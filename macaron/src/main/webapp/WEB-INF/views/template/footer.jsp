@@ -3,7 +3,7 @@
 
 <ul id = "bottom_menu">
 	<li>
-		<a class= "menu-icon">
+		<a class= "menu-icon" href = "${pageContext.request.contextPath}/main/main.do">
 			<img id = "menu_home" src = "../image_bundle/home-64.png">
 		</a>
 	</li>
@@ -13,7 +13,7 @@
 		</a>
 	</li>
 	<li>
-		<a class = "menu-icon">
+		<a class = "menu-icon" href = "${pageContext.request.contextPath}/gallery/main.do">
 			<img id = "menu_gallery" src = "../image_bundle/gallery.png">
 		</a>
 	</li>
