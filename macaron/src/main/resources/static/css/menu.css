@@ -1,0 +1,46 @@
+@charset "UTF-8";
+*{
+	text-decoration : none;
+	list-style-type : none;
+}
+body{
+	margin : 0px;
+}
+#main_header{
+	position : sticky;
+	top : 0px;
+	width : 100vw;
+	height : 40px;
+	background : skyblue;
+	margin : 0 auto;
+	z-index : 1000;
+}
+#top_menu, #bottom_menu{
+	display : flex;
+	justify-content : space-between;
+	padding : 0px;
+	margin : 0px;
+}
+#bottom_menu{
+	padding : 0 10px 0 10px;	
+}
+#menu_alarmBtn{
+	padding-left : 10px;
+}
+#menu_insertBtn{
+	padding-right : 10px;
+}
+.menu-icon img{
+	width : 30px;
+	padding-top : 5px;
+}
+
+#main_footer{
+	position : fixed;
+	bottom : 0px;
+	width : 100vw;
+	height : 40px;
+	background : skyblue;
+	margin : 0 auto;
+	z-index : 1000;
+}
