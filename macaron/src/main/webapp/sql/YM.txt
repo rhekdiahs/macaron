@@ -1,0 +1,38 @@
+create table gallery(
+	g_num INT not null auto_increment,
+	g_title varchar(100) not null,
+	g_content TEXT,
+	g_place varchar(100),
+	g_cookie varchar(50) not null,
+	g_hash varchar(1000),
+	g_data TIMESTAMP default now(),
+	mem_num INT not null,
+	constraint gallery_PK primary key(g_num),
+	foreign key (mem_num) references member(mem_num)
+);
+
+create table reply_gallery(
+	re_num INT not null primary key auto_increment,
+	re_date timestamp default now(),
+	re_content varchar(300),
+	g_num INT not null,
+	mem_num INT not null,
+	foreign key (g_num) references gallery(g_num),
+	foreign key (mem_num) references member(mem_num)
+);
+
+create table couple(
+	cp_num INT not null primary key auto_increment,
+	cp_1 varchar(50) not null,
+	cp_2 varchar(50) not null,
+	cp_date date,
+	cp_cookie varchar(30) not null
+);
+
+create table img_gallery(
+	img_num INT not null primary key auto_increment,
+	img_filename varchar(255) not null,
+	img_file blob not null,
+	g_num INT not null,
+	foreign key (g_num) references gallery(g_num)
+);
