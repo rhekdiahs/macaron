@@ -1,0 +1,40 @@
+@charset "UTF-8";
+*{
+	text-decoration : none;
+	list-style-type : none;
+}
+body{
+	margin : 0px;
+}
+
+ul{
+	padding:0px;
+}
+
+ #loginModal{
+ 	width:100%;
+ 	text-align:center;
+ }
+ .modal-head {
+    position: relative;
+    top: 25px;
+}
+form#login_form{
+	padding:10px;
+}
+
+.find-id li {
+    display: inline-flex;
+    color:black;
+}
+.find-id li a, .find-id li a:visited{
+	color:black;
+}
+button.login-submit{
+    width: 100px;
+    padding: 3px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+	background-color: #e65962;
+}
