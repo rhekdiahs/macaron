@@ -14,7 +14,7 @@
 	<li>
 	<!-- 나중에 캘린더 or 갤러리에서 글쓰기 버튼으로 만들 것(현재 페이지 주소에 따라) -->
 	<c:if test = "${fn:contains(curAddress, 'gallery')}">
-		<a class = "menu-icon" href = "${pageContext.request.contextPath}/gallery/write.do">
+		<a class = "menu-icon" href = "${pageContext.request.contextPath}/gallery/write.do" data-transition="slide">
 			<img id = "menu_insertBtn" src = "../image_bundle/free-icon-plus.png">
 		</a>
 	</c:if>		

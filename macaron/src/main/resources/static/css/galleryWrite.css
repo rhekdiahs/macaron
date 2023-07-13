@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+#gallery_write_header{
+	position : absolute;
+	top : 0px;
+	width : 100vw;
+	height : 40px;
+	background : floralwhite;
+	box-sizing : border-box;
+	margin : 0px;
+	padding : 0px;
+	display : flex;
+	line-height : 40px;
+}
+
+#cancel_write img{
+	width : 40px;
+	padding-left : 5px;
+}
+#gallery_submit{
+	width : 50px;
+	margin-right : 5px;
+}
+#writeInfo{
+	display : flex;
+	align-items: center;
+	margin : 15px;
+}
+.profile-img{
+	width : 40px;
+}
+#publish{
+	margin-left : 20px;
+}
+#gallery_content{
+	width : 100vw;
+	height : 100px;
+	border : none;
+	resize : none;
+	box-sizing : border-box;
+	padding : 10px;
+}
+#select-section{
+	margin : 0;
+	padding : 0;
+}
+#select-section .hide{
+	/*display : none;*/
+	margin : 10px 0 5px 0;
+}
+#select-section li{
+	padding : 0 15px;
+	text-align : left;
+	display : flex;
+	align-items : center;
+}
+.option-title{
+	margin-left : 10px;
+}
+.option-icon{
+	width : 20px;
+}
+.input-textbox{
+	position: relative;
+	width : calc(100% - 20px);
+	border : 1px solid #e1e5e7;
+	box-shadow : 0 1px 3px 0 rgba(0,0,0,.03);
+	border-radius : 5px;
+	padding : 10px 10px;
+}
+#select-section label{
+	position: relative;
+    display: block;
+    font-weight: 600;
+    padding: 7px 0;
+	width :100%;
+	border : 1px solid #e1e5e7;
+	box-shadow : 0 1px 3px 0 rgba(0,0,0,.03);
+	border-radius : 5px;
+	text-align : center;
+}
+#submit_btn{
+	height: 40px;
+    z-index: 500;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #ccc;
+}
+#submit_btn button{
+	border : none;
+	width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    opacity: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+    background-color: #ccc;
+    color: #fff;
+    border-radius: 0;
+}
+
+#placesList{
+	margin: 0;
+	padding : 0;
+	height : 120px;
+	overflow : auto;
+}
+.info-title{
+	margin : 0;
+	font-size : 13px;
+}
+.item{
+	margin: 2px 15px 2px 15px;
+	border-bottom : 1px solid #e1e5e7;
+}

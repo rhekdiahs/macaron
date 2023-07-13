@@ -11,17 +11,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/galleryWrite.css">
+
 </head>
 <body>
 <div id="main">
-	<div id="main_header">
-		<tiles:insertAttribute name="header"/>
-	</div>
-	<div id="main_body">
+	<div id="main_body_4_write">
 		<tiles:insertAttribute name="body"/>
-	</div>
-	<div id="main_footer">
-		<tiles:insertAttribute name="footer"/>
 	</div>
 </div>	
 </body>
