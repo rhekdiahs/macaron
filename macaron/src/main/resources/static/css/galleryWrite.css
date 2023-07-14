@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #gallery_write_header{
-	position : absolute;
+	position : fixed;
 	top : 0px;
 	width : 100vw;
 	height : 40px;
@@ -119,4 +119,7 @@
 .item{
 	margin: 2px 15px 2px 15px;
 	border-bottom : 1px solid #e1e5e7;
+}
+#write-hide{
+	left: 100%;
 }
