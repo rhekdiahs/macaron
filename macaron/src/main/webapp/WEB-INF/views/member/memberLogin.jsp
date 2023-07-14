@@ -26,10 +26,17 @@
 						</button>
 				</form>
 				</c:if>
+				<c:if test="${!empty user}">
+						<button class="btn text-white rounded logout-btn" style="background-color:#E65962;"
+						onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">
+						로그아웃</button>
+				</c:if>
 				<ul class="find-id">
+				<c:if test="${empty user}">
 					<li><a href="${pageContext.request.contextPath}/member/findId.do">아이디 찾기</a></li>
 					<li><a href="${pageContext.request.contextPath}/member/findPw.do">비밀번호 찾기</a></li>
 					<li><a href="${pageContext.request.contextPath}/member/registerUser.do">회원가입</a></li>
+				</c:if>
 				</ul>
 			</div>
 </div>

@@ -21,6 +21,7 @@ public class MemberVO {
 	@NotEmpty
 	private String mem_email;
 	private byte[] mem_photo;
+	private String mem_cookie;
 	private Date mem_regdate;
 	private Date mem_modi_date;
 	
@@ -60,6 +61,16 @@ public class MemberVO {
 			return true;
 		}
 		return false;
+	}
+
+
+	public String getMem_cookie() {
+		return mem_cookie;
+	}
+
+
+	public void setMem_cookie(String mem_cookie) {
+		this.mem_cookie = mem_cookie;
 	}
 
 

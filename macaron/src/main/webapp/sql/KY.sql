@@ -11,7 +11,7 @@ create table member_detail(
 	mem_phone varchar(13),
 	mem_email varchar(50) not null,
 	mem_photo blob,
-	mem_regdate date not null,
+	mem_regdate date not null default curdate(),
 	mem_cookie varchar(30),
 	mem_modi_date date,
 	constraint member_detail_fk1 foreign key(mem_num) references member(mem_num)

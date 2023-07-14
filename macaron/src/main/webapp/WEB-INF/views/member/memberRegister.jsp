@@ -7,7 +7,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/makeEmail.js"></script>
 <script>
 $(document).on("keyup", ".mem_phone", function() {
-	$(this).val($(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/, "$1-$2-$3" ).replace("--", "-")); 
+	$(this).val($(this).val().replace(/[^0-9]/g, "")); 
 });
 function numberphone(e){
 	if(e.value.length>13){
@@ -24,6 +24,7 @@ function numberphone(e){
 		<ul>
 			<li>
 				<label for="mem_id">아이디</label>
+				<br>
 				<form:input path="mem_id" autocomplete="off"/>
 				<input type="button" id="confirmId" value="아이디 중복체크">
 				<div id="message_id"></div> <!-- js를 위한 태그 -->
@@ -31,6 +32,7 @@ function numberphone(e){
 			</li>
 			<li>
 				<label for="mem_pw">비밀번호</label>
+				<br>
 				<form:password path="mem_pw"/>
 				<div id="message_pw">
 				<form:errors path="mem_pw" cssClass="error-color"/></div>
@@ -38,6 +40,7 @@ function numberphone(e){
 		
 			<li>
 				<label for="pw_confirm">비밀번호 확인</label>
+				<br>
 				<form:password path="pw_confirm"/>
 				<span id="confirmMsg"></span>
 			</li>
@@ -48,13 +51,16 @@ function numberphone(e){
 			<ul>
 			<li>
 				<label for="mem_nick">이름</label>
+				<br>
 				<form:input path="mem_nick"/>
 				<form:errors path="mem_nick" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="user_email">본인확인 이메일</label>
+				<br>
 				<input type="text" id="user_email" required>
 				<span id="middle">@</span>
+				<input type="text" id="email_direct" name="email_direct" placeholder="이메일 입력"/>
 				<select id="email_address" name="email_address" title="이메일 선택" class="email_address">
 					<option value="naver.com">naver.com</option>
 					<option value="gmail.com">gmail.com</option>
@@ -63,7 +69,6 @@ function numberphone(e){
 					<option value="nate.com">nate.com</option>
 					<option value="direct">직접입력</option>
 				</select>
-				<input type="text" id="email_direct" name="email_direct" placeholder="이메일 입력"/>
 				<input type="hidden" id="mem_email" name="mem_email" value="">
 				<button type="button" class="btn btn-primary" id="mail-Send-Btn">인증번호 전송</button>
 			</li>
@@ -82,7 +87,13 @@ function numberphone(e){
 			
 			<li>
 				<label for="phone">전화번호(선택)</label>
-				<form:input path="mem_phone" oninput="numberphone(this)" class="mem_phone" maxlength="13" placeholder="숫자만 입력하세요"/>
+				<br>
+				<select>
+					<option value="home">02</option>
+					<option value="cell">010</option>
+				</select>
+				<input type="text" class="mem_phone" maxlength="4" placeholder="중간번호 입력">
+				<form:input path="mem_phone" oninput="numberphone(this)" class="mem_phone" maxlength="4" placeholder="마지막번호 입력"/>
 				<form:errors path="mem_phone" cssClass="error-color"/>
 			</li>
 		</ul>

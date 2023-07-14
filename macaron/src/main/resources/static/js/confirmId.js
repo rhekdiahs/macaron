@@ -17,7 +17,7 @@ $(function(){
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'idNotFound'){
-					$('#message_id').css('color','#000').text('사용가능합니다.');
+					$('#message_id').css('color','#5df8a3').text('사용가능합니다.');
 					checkId = 1;	
 				}else if(param.result == 'idDuplicated'){
 					$('#message_id').css('color','#E65962').text('존재하는 아이디입니다.');
@@ -68,7 +68,7 @@ $(function(){
 		
 		if(mem_pw!='' && pw_confirm!=''){
 			if(mem_pw == pw_confirm){
-				$("#confirmMsg").text("비밀번호 일치").css('color','#000');
+				$("#confirmMsg").text("비밀번호 일치").css('color','#5df8a3');
 				return;
 			}
 			if(mem_pw != pw_confirm){

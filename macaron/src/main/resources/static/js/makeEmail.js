@@ -9,15 +9,20 @@ $(function(){
 	});
 
 	$("#email_address").change(function() {
-	if($("#email_address").val() == "direct"){
-		$("#email_direct").show();
-		$(document).on('keyup','#email_direct',function(){
+		if($("#email_address").val() == "direct"){
+			$("#user_email").val('');
+			$("#user_email").hide();
+			$("#middle").hide();
+			$("#email_direct").show();
+			$(document).on('keyup','#email_direct',function(){
+				email();
+			});
+		}else{
+			$("#email_direct").hide();
+			$("#user_email").show();
+			$("#middle").show();
 			email();
-		});
-	}else{
-		$("#email_direct").hide();
-		email();
-	}
+		}
 	});
 	
 	
@@ -34,13 +39,17 @@ $(function(){
 		
 		if(email!='' && address!=''){
 			$("#mem_email").val(email+middle+address);
+			console.log('email = ' + email+middle+address);
+		}else if(email==''&& address!='') {
+			$("mem_email").val(address);
+			console.log('adrress= ' + address);
 		}
 	};
 	
 	
 	//============이메일 인증코드==============
-	$('#mail-Check-Btn').click(function() {
-		if($('#user_email').val()==''){
+	$('#mail-Send-Btn').click(function() {
+		if($('#user_email').val()=='' && $("#email_address").val()!="direct"){
 			$('#user_email').val('').focus();
 			$('#mail-check-warn').html('이메일을 입력해주세요');
 			$('#mail-check-warn').css('color','#E65962');
