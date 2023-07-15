@@ -5,11 +5,7 @@
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <c:set var = "curAddress" value = "${requestScope['javax.servlet.forward.request_uri']}"/>
-<style>
-	#gallery_write_div{
-		transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1);
-	}
-</style>
+
 <ul id = "top_menu">
 	<li>
 		<a class= "menu-icon">
