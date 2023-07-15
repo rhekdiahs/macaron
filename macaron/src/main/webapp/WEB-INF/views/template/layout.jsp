@@ -10,7 +10,6 @@
 <title><tiles:getAsString name="title"/></title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/galleryWrite.css">
 </head>
 <body>
 <div id="main">

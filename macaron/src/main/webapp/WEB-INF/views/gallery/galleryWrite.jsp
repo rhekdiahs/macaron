@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab928e5929563772b2932e6182f6b7d9&libraries=services"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/galleryWrite.css">
-
-<div style = "height : 40px;">
+<div id = "gallery_write_div">
 	<ul id = "gallery_write_header">
 		<li>
 			<a id = "cancel_write" href = "${pageContext.request.contextPath}/gallery/main.do"><!-- 나중에 뒤로가기로 -->

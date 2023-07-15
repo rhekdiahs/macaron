@@ -1,8 +1,7 @@
 @charset "UTF-8";
 
+
 #gallery_write_header{
-	position : fixed;
-	top : 0px;
 	width : 100vw;
 	height : 40px;
 	background : floralwhite;
