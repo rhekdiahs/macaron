@@ -1,5 +1,17 @@
 @charset "UTF-8";
-
+#detail_title_wrap{
+	margin : 0 5px;
+	margin-bottom : 5px;
+}
+#detail_title_wrap p{
+	display : block;
+	margin : 10px 0px;
+	font-size : 18px;
+	font-weight : bold;
+}
+#detail_title_wrap a span{
+	font-size : 13px;
+}
 #detail_img_slider{
 	position : relative;
 	overflow : hidden;	
@@ -33,3 +45,60 @@
  #slide-cont-img-4{
  	left : 300%;
  }
+ #detail_radio_wrap{
+ 	text-align : center;
+ }
+[type = "radio"]{
+	appearance : none;
+	margin : 0;
+	padding : 0;
+	background : darkgray;
+	border : 1px solid darkgray;
+	border-radius : 10px;
+	width: 0.5em;
+  	height: 0.5em;
+}
+[type="radio"]:checked {
+	background : skyblue;
+	border : 1px solid skyblue;
+}
+
+#detail_content_wrap{
+	width : 90vw;
+	margin : 0 auto;
+}
+#detail_content{
+	width : 80vw;
+	margin : 0 auto;
+}
+#detail_hash p span{
+	color : lightblue;
+}
+#detail_hash p span{
+	font-size : 13px;
+}
+#reply_header{
+	font-size : 18px;
+	font-weight : bold;
+	margin : 10px 0;
+}
+#reply_list{
+	margin : 0 auto;
+	padding : 0;
+	align-items : center;
+}
+#reply_list img{
+	width : 40px;
+	height : 40px;
+	float : left;
+	border-radius : 30%;
+	text-align : center;
+}
+.reply{
+	padding-left : 50px;
+	margin : 10px 0;
+}
+.reply p{
+	margin : 0;
+	font-size : 15px;
+}
