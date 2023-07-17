@@ -11,6 +11,7 @@
 	<div id = "gallery_main_div">
 		<ul id = "gallery_list_ul">
 			<li>
+				<a href = "${pageContext.request.contextPath}/gallery/detail.do">
 				<div class = "gallery-item-wrap">
 					<div class = "gallery-item-image">
 						<img src = "../image_bundle/gal_sample.jpg">
@@ -21,6 +22,7 @@
 						<p class = "gallery-item-text-loc font-White">반포 한강공원</p>
 					</div>
 				</div>
+				</a>
 			</li>
 			<li>
 				<div class = "gallery-item-wrap">

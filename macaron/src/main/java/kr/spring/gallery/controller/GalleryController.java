@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.gallery.service.GalleryService;
 import kr.spring.gallery.vo.GalleryVO;
@@ -37,5 +38,13 @@ public class GalleryController {
 		
 		
 		return "main"; //나중에 resultView로 바꾸기
+	}
+	
+	@RequestMapping("/gallery/detail.do")
+	public String galleryDetail() {
+		
+		
+		
+		return "galleryDetail";
 	}
 }
