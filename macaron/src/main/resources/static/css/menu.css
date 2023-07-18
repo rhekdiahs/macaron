@@ -3,6 +3,10 @@
 	text-decoration : none;
 	list-style-type : none;
 }
+html, body {
+max-width: 100%;
+overflow-x: hidden;
+}
 .scroll::-webkit-scrollbar {
   display: none;
 }
