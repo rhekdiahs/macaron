@@ -18,7 +18,7 @@
 		</a>
 	</li>
 	<li>
-		<a class = "menu-icon">
+		<a class = "menu-icon" href = "${pageContext.request.contextPath}/mypage/main.do">
 			<img id = "menu_mypage" src = "../image_bundle/mypage_icon.png">
 		</a>
 	</li>

@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+#mypage_mem_info{
+	width : 100vw;
+	margin : 0;
+	padding : 20px 0;
+	border-bottom : 2px solid darkgray;
+	box-sizing : border-box;
+}
+#mypage_mem_info_list{
+	margin : 0;
+	padding : 0 20px;
+	display :flex;
+	align-items : center;
+}
+#mypage_mem_info_list li p{
+	margin : 0;
+	font-weight : bold;
+	opacity : 0.5;
+    height: 16px;
+}
+#mypage_mem_info_list li span{
+	font-weight : bold;
+}
+#mypage_mem_info_list li:nth-child(2) {
+	margin-left : 20px;
+}
+#mypage_mem_info_list li:last-child{
+	margin-left : auto;
+}
+.profile_img{
+	width : 60px;
+	height : 60px;
+	border-radius : 30%;
+}
+#mypage_couple_info_wrap{
+	width : 100vw;
+	margin : 0 auto;
+	padding : 50px 0 0 0;
+	box-sizing : border-box;
+}
+
+#mypage_couple_img{
+	width : 90vw;
+	display : flex;
+	margin : 0 auto;
+	padding : 0;
+	justify-content: center;
+	align-items : center;
+}
+#couple_since{
+	width : 90vw;
+	margin : 0 auto;
+	text-align : center;
+}
+#couple_since p{
+	margin : 10px 0 5px 0;
+}
+#couple_since p strong{
+	font-size : 28px;
+}
+#couple_anniversary{
+	width : 90vw;
+	margin : 10px auto;
+	padding : 20px 0;	
+}
+.couple_anniversary_list{
+	border-bottom : 1px solid darkgray;
+	margin : 0 auto;
+	padding : 10px 0;
+	display : flex;
+	justify-content: space-between;
+	align-items : center;
+	
+}
+
+.couple_anni_date_remain{
+	text-align : right;
+}

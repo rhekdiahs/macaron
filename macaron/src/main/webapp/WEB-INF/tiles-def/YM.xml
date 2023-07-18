@@ -16,4 +16,9 @@
     	<put-attribute name="title" value="갤러리상세"/>
     	<put-attribute name="body" value="/WEB-INF/views/gallery/galleryDetail.jsp"/>     
     </definition>
+    
+    <definition name="myPage" extends="galleryMain">
+    	<put-attribute name="title" value="갤러리상세"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/mypageMain.jsp"/>     
+    </definition>
 </tiles-definitions>
