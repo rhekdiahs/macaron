@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+#personal_profile{
+	width : 100vw;
+	margin : 0 auto;
+	padding : 50px 0;
+	text-align : center;
+}
+#personal_profile_img{
+	width : 30vw;
+	height : 30vw;
+	border-radius : 30%;
+	
+}
+#personal_profile_setting{
+	width : 5vw;
+	height : 5vw;
+}
+.personal_info_list{
+	margin : 0 0;
+	padding : 20px 20px;
+	height : 40px;
+	border-bottom : 1px solid lightgray;
+	display : flex;
+	align-items : center;
+}
+.personal_info_title{
+	width : 30vw;
+	font-weight : bold;
+}
+.pageOut{
+	justify-content : space-between;
+}
+.inputStyle{
+	border : none;
+	font-size: 16px;
+}

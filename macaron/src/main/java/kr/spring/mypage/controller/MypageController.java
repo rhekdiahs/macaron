@@ -11,4 +11,9 @@ public class MypageController {
 		
 		return "myPage";
 	}
+	@RequestMapping("/mypage/personal.do")
+	public String personal() {
+		
+		return "myPagePersonal";
+	}	
 }

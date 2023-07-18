@@ -14,7 +14,7 @@
 			<p><small>커플번호:123124124124</small></p>
 		</li>
 		<li>
-			<a>
+			<a href = "${pageContext.request.contextPath}/mypage/personal.do">
 				<img src = "../image_bundle/right-arrow.png" width = "35" height = "35" style = "opacity: 0.5;">
 			</a>	
 		</li>
