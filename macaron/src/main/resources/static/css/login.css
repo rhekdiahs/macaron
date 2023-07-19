@@ -38,3 +38,7 @@ button.login-submit{
     color: white;
 	background-color: #e65962;
 }
+
+button.logout-btn{
+	margin-top:20px;
+}
