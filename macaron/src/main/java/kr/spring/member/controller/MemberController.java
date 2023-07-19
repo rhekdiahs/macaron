@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.spring.couple.service.CoupleService;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.AuthCheckException;
@@ -34,6 +35,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private CoupleService coupleService;
 	
 	//자바빈 초기화
 	@ModelAttribute
@@ -126,19 +130,33 @@ public class MemberController {
 			member = memberService.selectCheckMember(memberVO.getMem_id());
 			
 			boolean check = false;
+			String code;
 			
 			if(member != null) {
 				check = member.isCheckedPassword(memberVO.getMem_pw());
 			}
 			
+			
 			if(check) {
 				session.setAttribute("user", member);
 				session.setAttribute("auth", member.getMem_auth());
 				session.setAttribute("user_num", member.getMem_num());
+				session.setAttribute("user_email", member.getMem_email());
 				
 				logger.debug("<<인증 성공>> : " + member.getMem_id());
-			
-				return "redirect:/main/main.do";
+				
+				if(memberService.checkCookie(member.getMem_email()) != null) {
+					session.setAttribute("user_cookie", member.getMem_cookie());
+					code = member.getMem_cookie();
+					
+					if(coupleService.checkCookie(code) == 0) {
+						return "redirect:/couple/check.do?code="+code;
+					}else {
+						return "redirect:/main.main.do";
+					}
+				}else{
+					return "redirect:/couple/send.do";
+				}
 			}
 			
 			//인증 실패
@@ -227,4 +245,6 @@ public class MemberController {
 	      }
 	      
 	   }
+	   
+	   
 }
