@@ -12,7 +12,7 @@ ${member.mem_cookie}
 </div>
 
 		<button disabled='disabled' id="register_btn" 
-				style="width:100%;" onclick="register();">커플 등록하기</button>
+				style="width:100%;" onclick="location.href='/couple/register.do';">커플 등록하기</button>
 
 <script type="text/javascript">
 
@@ -33,6 +33,4 @@ $("#input_code").keyup(function(){
 		document.getElementById('register_btn').disabled = true;
 	}
 });
-
-
 </script>

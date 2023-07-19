@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -116,7 +117,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member/login.do")
-	public String submitLogin(@Valid MemberVO memberVO, BindingResult result, HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String submitLogin(@Valid MemberVO memberVO, BindingResult result, HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model){
 		
 		logger.debug("<<로그인>> : " + memberVO);
 		
@@ -131,6 +132,7 @@ public class MemberController {
 			
 			boolean check = false;
 			String code;
+			String mem_email;
 			
 			if(member != null) {
 				check = member.isCheckedPassword(memberVO.getMem_pw());
@@ -146,15 +148,32 @@ public class MemberController {
 				logger.debug("<<인증 성공>> : " + member.getMem_id());
 				
 				if(memberService.checkCookie(member.getMem_email()) != null) {
-					session.setAttribute("user_cookie", member.getMem_cookie());
-					code = member.getMem_cookie();
 					
+					code = member.getMem_cookie();
+					mem_email = member.getMem_email();
+					
+					logger.debug("<<쿠키 나오라ㅏㅅ>> : " + code);
+					
+					//둘다 인증하지 않은 경우
 					if(coupleService.checkCookie(code) == 0) {
 						return "redirect:/couple/check.do?code="+code;
-					}else {
-						return "redirect:/main.main.do";
+					}else { // 커플 등록은 된 경우
+						if(coupleService.checkCp_1(code) == null && !coupleService.checkCp_2(code).isBlank()) {
+							if(!coupleService.checkCp_2(code).equals(mem_email)) {
+								return "redirect:/couple/check.do?code="+code;
+							}else {
+								return "redirect:/main/main.do";
+							}
+						}else if(coupleService.checkCp_2(code) == null && !coupleService.checkCp_1(code).isBlank()) {
+							if(!coupleService.checkCp_1(code).equals(mem_email)) {
+								return "redirect:/couple/check.do?code="+code;
+							}else {
+								return "redirect:/main/main.do";
+							}
+						}
 					}
 				}else{
+					logger.debug("[[[커플 전송해야 됨]]]");
 					return "redirect:/couple/send.do";
 				}
 			}

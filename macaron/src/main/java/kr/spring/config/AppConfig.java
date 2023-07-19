@@ -8,6 +8,8 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
+import kr.spring.couple.service.CoupleService;
+import kr.spring.couple.service.CoupleServiceImpl;
 import kr.spring.interceptor.AutoLoginCheckInterceptor;
 import kr.spring.interceptor.LoginCheckInterceptor;
 
@@ -41,7 +43,13 @@ public class AppConfig implements WebMvcConfigurer{
 			//LoginCheckInterceptor 설정
 			registry.addInterceptor(loginCheck).addPathPatterns("/community/lostList.do");
 		}
-
+		
+	@Bean
+	public CoupleService CoupleService() {
+		CoupleServiceImpl coupleService = new CoupleServiceImpl() {
+		};
+		return coupleService;
+	}
 	//타일스 설정
 	@Bean
 	public TilesConfigurer tilesConfigurer() {

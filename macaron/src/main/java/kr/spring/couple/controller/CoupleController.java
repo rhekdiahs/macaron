@@ -6,21 +6,19 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.User;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.couple.service.CoupleService;
+import kr.spring.couple.vo.CoupleVO;
 import kr.spring.mail.controller.MailService;
 import kr.spring.mail.controller.MailVO;
 import kr.spring.member.service.MemberService;
@@ -47,6 +45,11 @@ public class CoupleController {
 		return new MemberVO();
 	}
 	
+	@ModelAttribute
+	public CoupleVO initCommand2() {
+		return new CoupleVO();
+	}
+	
 	/*-------------------------------
 	 			커플 등록하기
 	 --------------------------------*/
@@ -71,8 +74,6 @@ public class CoupleController {
 			
 			return "checkCode";
 		}
-		
-		
 	}
 	
 	//커플코드 전송
@@ -133,8 +134,31 @@ public class CoupleController {
 	
 	//커플 등록
 	@RequestMapping("/couple/register.do")
-	public String register() {
-		return "";
+	public String register(HttpSession session, Model model) {
+		String mem_email = (String)session.getAttribute("user_email");
+		String cp_cookie = memberService.checkCookie(mem_email);
+		
+		logger.debug(">>>>>>>>>>>>>>등록시 EMAIL >>>" + mem_email);
+		logger.debug(">>>>>>>>>>>>>>등록시 COOKIE>>>" + cp_cookie);
+		
+		CoupleVO couple = initCommand2();
+		
+		couple.setCp_1(mem_email);
+		couple.setCp_cookie(cp_cookie);
+
+		if(coupleService.checkCookie(cp_cookie) == 0) {
+			coupleService.registerCp_1(couple);
+			
+			model.addAttribute("message", "커플 신청 완료");
+		}else {
+			coupleService.registerCp_2(couple);
+			
+			model.addAttribute("message", "커플 등록 완료");
+		}
+		
+		model.addAttribute("url", "/main/main.do");
+		
+		return "common/resultView";
 	}
 	
 	
