@@ -26,4 +26,13 @@ public interface MemberService {
 	
 	//마이페이지
 	public MemberVO getMemInfo(Integer mem_num);
+
+	//가입여부 체크
+	public int checkEmailCount(String mem_email);
+	
+	//커플인증여부 체크
+	public String checkCookie(String mem_email);
+	
+	//커플인증코드 저장
+	public void setCookie(String mem_email, String partner_email, String mem_cookie);
 }

@@ -25,7 +25,7 @@ public interface MemberMapper {
 	@Insert("INSERT INTO member_detail (mem_num, mem_nick, mem_pw, mem_phone, mem_email) VALUES (#{mem_num}, #{mem_nick}, #{mem_pw}, #{mem_phone}, #{mem_email})")
 	public void insertMember_detail(MemberVO member);
 	
-	@Select("SELECT m.mem_num, m.mem_id, m.mem_auth, d.mem_pw, d.mem_email FROM member m LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num WHERE m.mem_id = #{mem_id}")
+	@Select("SELECT m.mem_num, m.mem_id, m.mem_auth, d.mem_pw, d.mem_email, d.mem_cookie FROM member m LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num WHERE m.mem_id = #{mem_id}")
 	public MemberVO selectCheckMember(String mem_id);
 
 	/*=================================
@@ -54,8 +54,20 @@ public interface MemberMapper {
 	@Select("SELECT * FROM MEMBER m JOIN MEMBER_DETAIL d ON m.mem_num = d.mem_num WHERE m.mem_num=${mem_num}")
 	public MemberVO getMemInfo(Integer mem_num);
 
-
-
+	/*--------------------------------
+	 			커플 등록 인증
+	 --------------------------------*/
+	// 가입된 계정인지 확인
+	@Select("select count(*) from member_detail where mem_email = #{mem_eamil}")
+	public int checkEmailCount(String mem_email);
+	
+	// 커플 인증된 계정인지 확인
+	@Select("select mem_cookie from member_detail where mem_email = #{mem_email}")
+	public String checkCookie(String mem_email);
+	
+	//커플인증코드 값 저장
+	@Update("update member_detail set mem_cookie=#{mem_cookie} where mem_email=#{mem_email}")
+	public void setCookie(String mem_email, String mem_cookie);
 }
 
 

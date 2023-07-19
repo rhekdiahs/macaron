@@ -22,4 +22,19 @@
     	<put-attribute name="title" value="로그인"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/memberLogin.jsp"/>     
     </definition>
+    
+    
+    <!-- 커플 등록 페이지 -->
+    <definition name="sendCode" template="/WEB-INF/views/template/layout.jsp">
+    	<put-attribute name="title" value="커플코드 전송페이지"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/couple/sendCode.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>         
+    </definition>
+    
+	<definition name="checkCode" extends="sendCode">
+    	<put-attribute name="title" value="커플코드 인증페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/couple/checkCode.jsp"/>     
+    </definition>
+    
 </tiles-definitions>

@@ -22,7 +22,6 @@ public class MemberServiceImpl implements MemberService{
 		member.setMem_num(memberMapper.selectMem_num());
 		memberMapper.insertMember(member);
 		memberMapper.insertMember_detail(member);
-		
 	}
 
 	@Override
@@ -53,6 +52,22 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO getMemInfo(Integer mem_num) {
 		return memberMapper.getMemInfo(mem_num);
+	}
+
+	@Override
+	public int checkEmailCount(String mem_email) {
+		return memberMapper.checkEmailCount(mem_email);
+	}
+
+	@Override
+	public String checkCookie(String mem_email) {
+		return memberMapper.checkCookie(mem_email);
+	}
+
+	@Override
+	public void setCookie(String mem_email, String partner_email, String mem_cookie) {
+		memberMapper.setCookie(mem_email, mem_cookie);
+		memberMapper.setCookie(partner_email, mem_cookie);
 	}
 	
 	
