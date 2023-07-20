@@ -3,6 +3,7 @@ package kr.spring.couple.dao;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.couple.vo.CoupleVO;
 
@@ -25,7 +26,7 @@ public interface CoupleMapper {
 	@Insert("insert into couple (cp_1, cp_cookie) values (#{cp_1},#{cp_cookie})")
 	public void registerCp_1(CoupleVO couple);
 	
-	@Insert("insert into couple (cp_2) values (#{cp_2}")
+	@Update("update couple set cp_2 = #{cp_2} where cp_cookie = #{cp_cookie}")
 	public void registerCp_2(CoupleVO couple);
 }
 
