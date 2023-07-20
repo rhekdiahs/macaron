@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>    
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/galleryDetail.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryDetailCarousel.js"></script>
 
 <div id = "detail_title_wrap">
-	<p>야경 본 날</p>
+	<p>${gallery.g_title}</p>
 	<a>
-		<span>반포 한강공원</span>
+		<span>${gallery.g_place }</span>
 	</a>
 </div>
 <div id="detail_img_slider">
@@ -42,19 +43,17 @@
 <div id = "detail_content_wrap">
 	<div id="detail_content">
 		<p>
-			시들어 가는 노년에게서 구하지 못할 바이며 오직 우리 청춘에 서만 구할 수 있는 것이다 청춘은 인생의 황금시대다
-			우리는 이 황금시대의 가치를 충분히 발휘하기 위하여 이 황금시대를 영원히 붙잡아 두기 위하여 힘차게 노래하며 힘차게
+			${gallery.g_content}
 		</p>
 	</div>
 	<div id = 'detail_hash'>
 		<p>
 			<span>
-				<a>#해시태그</a>
-				<a>#해시태그</a>
-				<a>#해시태그</a>
-				<a>#해시태그</a>
-				<a>#해시태그</a>
-				<a>#해시태그</a>
+			<c:forEach var = "hash" items = "${hashtag}">
+				<c:if test="${!empty hash}">
+					<a>#${hash }</a>
+				</c:if>
+			</c:forEach>
 			</span>
 
 		</p>

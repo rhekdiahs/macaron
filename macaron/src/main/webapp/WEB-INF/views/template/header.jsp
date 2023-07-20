@@ -14,10 +14,15 @@
 	</li>
 	<li>
 	<!-- 나중에 캘린더 or 갤러리에서 글쓰기 버튼으로 만들 것(현재 페이지 주소에 따라) -->
-	<c:if test = "${fn:contains(curAddress, 'gallery')}">
+	<c:if test = "${fn:contains(curAddress, 'gallery/main')}">
 		<a class = "menu-icon" id = "menu_icon">
 			<img id = "menu_insertBtn" src = "../image_bundle/free-icon-plus.png">
 		</a>
-	</c:if>		
+	</c:if>
+	<c:if test = "${fn:contains(curAddress, 'mypage/personal')}">
+		<a class = "menu-icon" id = "menu_icon_check">
+			<img id = "menu_insertBtn" src = "../image_bundle/check.png">
+		</a>
+	</c:if>				
 	</li>
 </ul>

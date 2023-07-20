@@ -22,7 +22,7 @@
 }
 
 .slide-transition{
-	transition: transform 0.5s cubic-bezier(0.87, 0, 0.13, 1);
+	transition: transform 0.5s;
 }
 
 .slide-cont-img{

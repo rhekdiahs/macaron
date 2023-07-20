@@ -53,7 +53,9 @@
 			<span>로그아웃</span>
 		</li>
 		<li>
-			<img src = "../image_bundle/right-arrow.png" width = "20" height = "20" style = "opacity: 0.5;">
+			<a onclick = "checkLogout()">
+				<img src = "../image_bundle/right-arrow.png" class = "nextBtn">
+			</a> 
 		</li>
 	</ul>
 	<ul class = "personal_info_list pageOut">
@@ -61,10 +63,23 @@
 			<span>회원탈퇴</span>
 		</li>
 		<li>
-			<img src = "../image_bundle/right-arrow.png" width = "20" height = "20" style = "opacity: 0.5;">
+			<a>
+				<img src = "../image_bundle/right-arrow.png" class = "nextBtn">
+			</a>
 		</li>
 	</ul>					
 </div>
 <div style = "margin-bottom : 40px;">
 
 </div>
+<script>
+function checkLogout(){
+	var check = confirm("로그아웃 할까요?");
+	console.log(check);
+	if(check){
+		location.href = "${pageContext.request.contextPath}/member/logout.do";
+	}else{
+		return;
+	}
+}
+</script>

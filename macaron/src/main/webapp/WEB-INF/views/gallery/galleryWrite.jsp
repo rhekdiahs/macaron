@@ -2,7 +2,74 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab928e5929563772b2932e6182f6b7d9&libraries=services"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/galleryWrite.css">
-<div id = "gallery_write_div">
+	<div id = "gallery_write_div">
+		<div id = "gallery_write_div_wrap">
+			<ul id = "gallery_write_header">
+				<li>
+					<a id = "cancel_write"><!-- 나중에 뒤로가기로 -->
+						<img id = "back_btn" src = "../image_bundle/back.png">
+					</a>
+				</li>
+				<li style = "margin: 0 auto;">
+					<span>게시물 등록하기</span>
+				</li>
+			</ul>
+		</div>
+		<div id = "cont-wrap">
+			<div id = "writeInfo">
+				<img class = "profile-img" src = "../image_bundle/mypage_icon.png">
+				<select id = "publish">
+					<option value = "public">전체공개</option>
+					<option value = "couple">커플보기</option>
+				</select>
+			</div>
+			<div>
+				<form:form action = "write.do" method = "post" modelAttribute = "galleryVO" id = "gallery_register">
+					<textarea id = "gallery_content" name = "g_content" placeholder = "오늘의 추억을 기록해보세요"></textarea>
+					<hr>
+					<ul id = "select-section">
+						<li>
+							<img class = "option-icon" src = "../image_bundle/price.png">
+							<span class = "option-title">제목</span>
+						</li>
+						<li class = "hide">
+							<input type = "text" class = "input-textbox" name = "g_title" placeholder = "제목을 입력해주세요.">
+						</li>
+						<hr>
+						<li>
+							<img class = "option-icon" src = "../image_bundle/picture.png">
+							<span class = "option-title">사진</span>
+						</li>
+						<li class = "hide">
+							<label for ="upload">파일선택</label>
+							<input type = "file" name = "upload" id = "upload" style = "display:none;">
+						</li>
+						<hr>
+						<li>
+							<img class = "option-icon" src = "../image_bundle/hash-key.png">
+							<span class = "option-title">해시태그</span>
+						</li>
+						<li class = "hide">
+							<input type = "text" class = "input-textbox" name = "g_hash" placeholder = "#해시태그 형태로 입력해주세요.">
+						</li>
+						<hr>
+						<li>
+							<img class = "option-icon" src = "../image_bundle/placeholder.png">
+							<span class = "option-title">장소</span>
+						</li>
+						<li class = "hide">
+							<input type = "text" id ="keyword" class = "input-textbox" name = "g_place" placeholder = "장소를 검색해주세요.">
+						</li>
+					</ul>
+					<ul id = "placesList"></ul>
+					<div id = "submit_btn">
+						<button id = "gallery_submit" disabled='disabled'>게시</button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+<%-- <div id = "gallery_write_div">
 	<ul id = "gallery_write_header">
 		<li>
 			<a id = "cancel_write" href = "${pageContext.request.contextPath}/gallery/main.do"><!-- 나중에 뒤로가기로 -->
@@ -69,7 +136,7 @@
 			</div>
 		</form>
 	</div>
-</div>
+</div> --%>
 <script>
 
 $('#keyword').change(function(){
