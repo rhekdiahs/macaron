@@ -162,6 +162,10 @@ public class CoupleController {
 		return "common/resultView";
 	}
 	
+	@RequestMapping("/couple/wait.do")
+	public String waiting() {
+		return "waitingView";
+	}
 	
 	public String code() {
 		Random random = new Random();

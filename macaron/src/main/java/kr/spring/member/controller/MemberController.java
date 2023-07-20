@@ -162,14 +162,16 @@ public class MemberController {
 							if(!coupleService.checkCp_2(code).equals(mem_email)) {
 								return "redirect:/couple/check.do?code="+code;
 							}else {
-								return "redirect:/main/main.do";
+								return "redirect:/couple/wait.do";
 							}
 						}else if(coupleService.checkCp_2(code) == null && !coupleService.checkCp_1(code).isBlank()) {
 							if(!coupleService.checkCp_1(code).equals(mem_email)) {
 								return "redirect:/couple/check.do?code="+code;
 							}else {
-								return "redirect:/main/main.do";
+								return "redirect:/couple/wait.do";
 							}
+						}else if(!coupleService.checkCp_1(code).isBlank() && !coupleService.checkCp_2(code).isBlank()) {
+							return "redirect:/main/main.do";
 						}
 					}
 				}else{

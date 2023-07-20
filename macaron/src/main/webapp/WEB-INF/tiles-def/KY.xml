@@ -37,4 +37,9 @@
     	<put-attribute name="body" value="/WEB-INF/views/couple/checkCode.jsp"/>     
     </definition>
     
+	<definition name="waitingView" extends="sendCode">
+    	<put-attribute name="title" value="커플등록 대기페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/couple/waitingView.jsp"/>     
+    </definition>
+    
 </tiles-definitions>
