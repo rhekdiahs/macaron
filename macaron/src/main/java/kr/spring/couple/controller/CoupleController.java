@@ -143,14 +143,15 @@ public class CoupleController {
 		
 		CoupleVO couple = initCommand2();
 		
-		couple.setCp_1(mem_email);
 		couple.setCp_cookie(cp_cookie);
 
 		if(coupleService.checkCookie(cp_cookie) == 0) {
+			couple.setCp_1(mem_email);
 			coupleService.registerCp_1(couple);
 			
 			model.addAttribute("message", "커플 신청 완료");
 		}else {
+			couple.setCp_2(mem_email);
 			coupleService.registerCp_2(couple);
 			
 			model.addAttribute("message", "커플 등록 완료");
