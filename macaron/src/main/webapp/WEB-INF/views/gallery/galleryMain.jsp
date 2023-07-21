@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/galleryMain.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryMain2Write.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/writeFormCheck.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryFileInput.js"></script>
 
 <div id = "for_slider_div">
 	<div id = "gallery_main_div">
@@ -133,9 +134,14 @@
 							<span class = "option-title">사진</span>
 						</li>
 						<li class = "hide">
+							<%-- <label for = "openWindow">파일선택</label>
+							<input type = "button" id = "openWindow" value = "파일선택" onclick = "window.open('${pageContext.request.contextPath}/FileInput.html','dd', 'location = no, status = no, width = 360px, height = 360px')" style = "display:none;"> --%>
 							<label for ="upload">파일선택</label>
-							<input type = "file" name = "upload" id = "upload" style = "display:none;">
+							<input type = "file" name = "upload" id = "upload" accept = "image/gif, image/png, image/jpeg" multiple="multiple" style = "display:none;">
 						</li>
+						<div id = "imagePreviews">
+							<ul id = "forUpload-ul" style = "display : none;"></ul>
+						</div>
 						<hr>
 						<li>
 							<img class = "option-icon" src = "../image_bundle/hash-key.png">

@@ -71,6 +71,7 @@
 	padding : 10px 10px;
 }
 #select-section label{
+	background : none;
 	position: relative;
     display: block;
     font-weight: 600;
@@ -124,4 +125,26 @@
 }
 #write-hide{
 	left: 100%;
+}
+#imagePreviews{
+	width : 100vw;
+	box-sizing : border-box;	
+}
+#forUpload-ul{
+	padding : 0 10px;
+	display : flex;
+    justify-content: space-around;
+}
+#forUpload-ul li{
+	padding : 0px;
+	box-sizing : border-box;
+}
+.preview-img{
+	width : 50px;
+	height : 50px;
+	border-radius : 5px;
+}
+.preview-del-btn{
+	border : none;
+	background : none;
 }

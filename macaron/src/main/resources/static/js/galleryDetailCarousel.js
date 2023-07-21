@@ -24,14 +24,14 @@ $(function(){
 	$('#detail_img_slider').on('touchend', function(e){
 		slideCont.classList.add('slide-transition');
 
-		if(distance < -screenX/4){
+		if(distance < -screenX/6){
 			if(index == slideCount - 1) {
 				slideCont.style.transform = "translateX(" + (-screenX * index) + "px)";
 				return;
 			};
 			index += 1;
 			radioButton[index].checked = true;
-		}else if(distance >= screenX/4 && index != 0){
+		}else if(distance >= screenX/6 && index != 0){
 			index -= 1;
 			radioButton[index].checked = true;			
 		}

@@ -46,11 +46,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		gallery_write_div.style.transform = "translateX(-100%)";
 		gallery_write_div.style.height = (screen.height) + 'px';
 		
+		curImageCount = 0;
+		
 		history.pushState(null, null, curURL + 'gallery/write.do');
 		urlCheck = 'gallery/write.do';		
 	}
 	
-	function write2main(){
+	function write2main(curTop){
 		if(urlCheck == 'gallery/write.do'){
 			
 			if (curTop == '0') {
@@ -63,6 +65,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			
 			history.pushState(null, null, curURL + 'gallery/main.do');		
 			urlCheck = 'gallery/main.do';
+			
+			var setNullInput = document.querySelectorAll('input');
+			document.getElementById('gallery_content').value = "";
+			document.getElementById("forUpload-ul").innerHTML = "";
+			curImageCount = 0;
+			for(var i = 0; i < setNullInput.length; i++){
+				setNullInput[i].value = "";
+			}
 			
 			enableScroll();
 		}				
