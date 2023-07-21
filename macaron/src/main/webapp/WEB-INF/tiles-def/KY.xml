@@ -42,4 +42,12 @@
     	<put-attribute name="body" value="/WEB-INF/views/couple/waitingView.jsp"/>     
     </definition>
     
+    <!-- 캘린더 페이지 -->
+    <definition name="calMain" template="/WEB-INF/views/template/layout.jsp">
+    	<put-attribute name="title" value="캘린더 메인페이지"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/calendar/calendarMain.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>         
+    </definition>
+    
 </tiles-definitions>
