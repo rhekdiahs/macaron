@@ -1,7 +1,9 @@
 package kr.spring.gallery.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.gallery.service.GalleryService;
+import kr.spring.gallery.vo.GalleryImgVO;
 import kr.spring.gallery.vo.GalleryVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.StringUtil;
@@ -76,5 +80,44 @@ public class GalleryController {
 		model.addAttribute("hashtag", hashtag);
 		
 		return "galleryDetail";
+	}
+	
+	@RequestMapping("/gallery/insertGallery.do")
+	@ResponseBody
+	public Map<String, Object> insertGalleryTable(HttpSession session){
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		Map<String, Object> mapAjax = new HashMap<String, Object>();
+		
+		try {
+			galleryService.insertGallery(user.getMem_num());			
+			
+			mapAjax.put("g_num", galleryService.getG_num());
+			mapAjax.put("result", "successRow");
+		}catch(Exception e) {
+			mapAjax.put("result", "failRow");			
+		}
+		
+		return mapAjax;		
+	}
+	
+	@RequestMapping("/gallery/insertGalleryImage.do")
+	@ResponseBody
+	public Map<String, String> insertImage(GalleryImgVO galleryImg, HttpSession session){
+				
+		Map<String, String> mapAjax = new HashMap<String, String>();
+		
+		//위 ajax에서 리턴 받은 g_num ajax 송신할 때 세팅해주고 넘겨받자
+		
+		try {
+			galleryService.insertGalleryImg(galleryImg);
+			
+			mapAjax.put("result", "success");
+		}catch(Exception e) {
+			e.printStackTrace();
+			mapAjax.put("result", "fail");			
+		}
+		return mapAjax;
 	}
 }

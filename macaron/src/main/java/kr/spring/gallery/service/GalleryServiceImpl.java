@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.gallery.dao.GalleryMapper;
+import kr.spring.gallery.vo.GalleryImgVO;
 import kr.spring.gallery.vo.GalleryVO;
 
 @Service
@@ -29,6 +30,21 @@ public class GalleryServiceImpl implements GalleryService{
 	@Override
 	public GalleryVO getGalleryDetail(Integer g_num) {
 		return galleryMapper.getGalleryDetail(g_num);
+	}
+
+	@Override
+	public void insertGallery(Integer mem_num) {
+		galleryMapper.insertGallery(mem_num);
+	}
+
+	@Override
+	public void insertGalleryImg(GalleryImgVO galleryImg) {
+		galleryMapper.insertGalleryImg(galleryImg);
+	}
+
+	@Override
+	public Integer getG_num() {
+		return galleryMapper.getG_num();
 	}
 
 }

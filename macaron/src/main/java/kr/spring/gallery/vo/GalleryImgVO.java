@@ -12,6 +12,8 @@ public class GalleryImgVO {
 	
 	public void setUpload(MultipartFile upload) throws IOException{
 		setImg_file(upload.getBytes());
+		
+		setImg_filename(upload.getOriginalFilename());
 	}
 	
 	public int getImg_num() {

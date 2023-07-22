@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/galleryWrite.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/galleryMain.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryMain2Write.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/writeFormCheck.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryFileInput.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/writeFormCheck.js"></script>
 
 <div id = "for_slider_div">
 	<div id = "gallery_main_div">
@@ -118,6 +118,7 @@
 			</div>
 			<div>
 				<form:form action = "write.do" method = "post" modelAttribute = "galleryVO" id = "gallery_register">
+					<input type = "hidden" name = "g_num" id = "g_num">
 					<textarea id = "gallery_content" name = "g_content" placeholder = "오늘의 추억을 기록해보세요"></textarea>
 					<hr>
 					<ul id = "select-section">
@@ -160,10 +161,10 @@
 						</li>
 					</ul>
 					<ul id = "placesList"></ul>
-					<div id = "submit_btn">
-						<button id = "gallery_submit" disabled='disabled'>게시</button>
-					</div>
 				</form:form>
+				<div id="submit_btn">
+					<button id="gallery_submit" disabled='disabled'>게시</button>
+				</div>
 			</div>
 		</div>
 	</div>
