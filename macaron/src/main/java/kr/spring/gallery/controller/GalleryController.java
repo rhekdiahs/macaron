@@ -1,6 +1,7 @@
 package kr.spring.gallery.controller;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,31 @@ public class GalleryController {
 		
 		List<GalleryVO> list = galleryService.getGalleryList(user.getMem_cookie());
 		
+		List<String> imgList = new ArrayList<>();
+		
+		for(int i = 0; i < list.size(); i++) {
+			int g_num = list.get(i).getG_num();
+			GalleryImgVO galleryImgVo = galleryService.getThumbImg(g_num);
+			String filename = galleryImgVo.getImg_filename();
+			byte[] galImg = galleryImgVo.getImg_file();
+
+			
+			String ext = filename.substring(filename.lastIndexOf("."));
+			if(ext.equalsIgnoreCase(".gif")) {
+				ext = "image/gif";
+			}else if(ext.equalsIgnoreCase(".png")) {
+				ext = "image/png";
+			}else {
+				ext = "image/jpeg";
+			}
+			
+			String galImg2Base64 = Base64.getEncoder().encodeToString(galImg);
+			String fullBase64 = "data:" + ext + ";base64, " + galImg2Base64;
+						
+			imgList.add(i, fullBase64);
+		}
+		
+		model.addAttribute("imgList", imgList);
 		model.addAttribute("list", list);
 		
 		return "galleryMain";
@@ -68,6 +94,31 @@ public class GalleryController {
 		
 		GalleryVO gallery = galleryService.getGalleryDetail(g_num);
 		
+		List<GalleryImgVO> list = galleryService.getGalleryDetailImg(g_num);
+		
+		List<String> imgList = new ArrayList<>();
+		
+		for(int i = 0; i < list.size(); i++) {
+			
+			String filename = list.get(i).getImg_filename();
+			byte[] galImg = list.get(i).getImg_file();
+
+			
+			String ext = filename.substring(filename.lastIndexOf("."));
+			if(ext.equalsIgnoreCase(".gif")) {
+				ext = "image/gif";
+			}else if(ext.equalsIgnoreCase(".png")) {
+				ext = "image/png";
+			}else {
+				ext = "image/jpeg";
+			}
+			
+			String galImg2Base64 = Base64.getEncoder().encodeToString(galImg);
+			String fullBase64 = "data:" + ext + ";base64, " + galImg2Base64;
+						
+			imgList.add(i, fullBase64);
+		}
+		
 		String[] hashtag = gallery.getG_hash().split("#");
 		
 		
@@ -76,6 +127,7 @@ public class GalleryController {
 			gallery.setG_content(StringUtil.useBrNoHtml(gallery.getG_content()));
 		}
 		
+		model.addAttribute("imgList", imgList);
 		model.addAttribute("gallery", gallery);
 		model.addAttribute("hashtag", hashtag);
 		

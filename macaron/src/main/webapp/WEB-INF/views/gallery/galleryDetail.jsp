@@ -11,33 +11,23 @@
 	</a>
 </div>
 <div id="detail_img_slider">
-	<div id = "slide_cont">
-		<div class = "slide-cont-img" id = "slide_cont_img_1">
-			<img src="../image_bundle/detail_sample.jpg">			
+	<div id="slide_cont">
+	<c:forEach var = "list" items = "${imgList}" varStatus = "status">
+		<div class="slide-cont-img" id="slide_cont_img_${status.count}">
+			<img src="${list}">
 		</div>
-		<div class = "slide-cont-img" id = "slide_cont_img_2">
-			<img src="../image_bundle/three-macarons.png">
-		</div>
-		<div class = "slide-cont-img" id = "slide_cont_img_3">
-			<img src="../image_bundle/gal_sample.jpg">
-		</div>
-		<div class = "slide-cont-img" id = "slide_cont_img_4">
-			<img src="../image_bundle/three-macarons.png">
-		</div>
+	</c:forEach>
 	</div>
 </div>
 <div id = "detail_radio_wrap">
-	<input type = "radio" name = "slide-radios" class = "slide-radio" onclick="return(false);" checked>
-	<input type = "radio" name = "slide-radios" class = "slide-radio" onclick="return(false);">
-	<input type = "radio" name = "slide-radios" class = "slide-radio" onclick="return(false);">
-	<input type = "radio" name = "slide-radios" class = "slide-radio" onclick="return(false);">
-	
-<!-- 	<div class = "radio-label">
-		<label for = "slide-radio-1">1</label>
-		<label for = "slide-radio-2">2</label>
-		<label for = "slide-radio-3">3</label>
-		<label for = "slide-radio-4">4</label>
-	</div> -->
+	<c:forEach var = "list" items = "${imgList}" varStatus = "status">
+		<c:if test = "${status.index == 0}">
+			<input type = "radio" name = "slide-radios" class = "slide-radio" onclick="return(false);" checked>
+		</c:if>
+		<c:if test = "${status.index != 0}">
+			<input type = "radio" name = "slide-radios" class = "slide-radio" onclick="return(false);">
+		</c:if>
+	</c:forEach>
 </div>
 <hr width = "90%">
 <div id = "detail_content_wrap">

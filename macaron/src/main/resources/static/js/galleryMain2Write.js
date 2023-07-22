@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-		
 	var main_header = document.getElementById("main_header");
 	var main_footer = document.getElementById("main_footer");
 	
+	var gallery_wrap = document.getElementById("for_slider_div");
 	var gallery_write_div = document.getElementById("gallery_write_div");
 	var gallery_write_div_wrap = document.getElementById("gallery_write_div_wrap");
 	
 	var writeButton = document.getElementById('menu_icon');
 	var backButton = document.getElementById('back_btn');
 	var curURL = document.location.href.split('gallery')[0];
+	var placeList = document.getElementById("placesList");
 	
 	let curTop;
 	let urlCheck;
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	};
 	
 	function main2write(curTop){
-		disableScroll();
+		$('html, body').addClass('hidden');
 
 		$('#main_header').slideUp(200, "", function(){
 			main_header.style.display = "none";
@@ -44,7 +45,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		gallery_write_div_wrap.style.display = "";
 		gallery_write_div.style.transform = "translateX(-100%)";
+		
+		gallery_wrap.style.height = (screen.height) + 'px';
 		gallery_write_div.style.height = (screen.height) + 'px';
+		
+		placeList.style.height = (screen.height - placeList.offsetTop - main_footer.clientHeight) + "px";
 		
 		curImageCount = 0;
 		
@@ -59,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				gallery_write_div_wrap.style.display = "none";
 			}
 			gallery_write_div.style.transform = "translateX(100%)";
+			gallery_wrap.style.height = "";
 			
 			$('#main_header').slideDown(200);
 			$('#main_footer').slideDown(200);
@@ -66,42 +72,17 @@ document.addEventListener('DOMContentLoaded', function() {
 			history.pushState(null, null, curURL + 'gallery/main.do');		
 			urlCheck = 'gallery/main.do';
 			
+			//닫았을 시 있던 값 초기화
 			var setNullInput = document.querySelectorAll('input');
 			document.getElementById('gallery_content').value = "";
 			document.getElementById("forUpload-ul").innerHTML = "";
 			curImageCount = 0;
+			removeAllChildNods(listEl);
 			for(var i = 0; i < setNullInput.length; i++){
 				setNullInput[i].value = "";
 			}
 			
-			enableScroll();
+			$('html, body').removeClass('hidden');
 		}				
-	}
-	
-	function preventDefault(e) {
-		e.preventDefault();
-	}
-	
-	var supportsPassive = false;
-	
-	try {
-		window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-			get: function() { supportsPassive = true; }
-		}));
-	} catch (e) { }
-	
-	var wheelOpt = supportsPassive ? { passive: false } : false;
-	var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
-
-	// call this to Disable
-	function disableScroll() {
-		window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-		window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-		window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
-	}
-	function enableScroll() {
-		window.removeEventListener('DOMMouseScroll', preventDefault, false);
-		window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
-		window.removeEventListener('touchmove', preventDefault, wheelOpt);
 	}
 });

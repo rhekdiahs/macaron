@@ -15,9 +15,12 @@ public interface GalleryMapper {
 	/*==================================
     			 	갤러리
 	====================================*/
-	@Select("SELECT g_num, g_title, g_place, g_cookie, g_date FROM gallery WHERE g_cookie = #{g_cookie} ORDER BY g_date DESC limit 0,3")
-	public List<GalleryVO>getGalleryList(String g_cookie);
+	@Select("SELECT g_num, g_title, g_place, g_cookie, g_date FROM gallery WHERE g_cookie = #{g_cookie} ORDER BY g_date DESC limit 0,4")
+	public List<GalleryVO> getGalleryList(String g_cookie);
 
+	@Select("SELECT * FROM img_gallery where g_num = #{g_num} ORDER BY img_num asc limit 1")
+	public GalleryImgVO getThumbImg(Integer g_num);
+	
 	@Insert("INSERT INTO gallery (mem_num) VALUES (#{mem_num})")
 	public void insertGallery(Integer mem_num);
 	
@@ -32,4 +35,7 @@ public interface GalleryMapper {
 	
 	@Select("SELECT * FROM gallery WHERE g_num = #{g_num}")
 	public GalleryVO getGalleryDetail(Integer g_num);
+	
+	@Select("SELECT * FROM img_gallery WHERE g_num = #{g_num}")
+	public List<GalleryImgVO> getGalleryDetailImg(Integer g_num);
 }

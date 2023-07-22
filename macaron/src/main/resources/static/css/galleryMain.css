@@ -41,6 +41,7 @@
 }
 .gallery-item-image img{
 	width: inherit;
+	height: 60vw;
 }
 .gallery-item-text{
 	position : absolute;
@@ -70,4 +71,17 @@
 	font-size : 11pt;
 	overflow : hidden;
 	text-overflow: ellipsis;
+}
+
+#empty-div{
+	display : flex;
+	justify-content: center;
+  	align-items: center;
+	text-align : center;
+	width : 100vw;
+	height : calc(100vh - 40px);
+}
+#empty-div img{
+	width : 30vw;
+	height : 30vw;
 }

@@ -47,4 +47,14 @@ public class GalleryServiceImpl implements GalleryService{
 		return galleryMapper.getG_num();
 	}
 
+	@Override
+	public GalleryImgVO getThumbImg(Integer g_num) {
+		return galleryMapper.getThumbImg(g_num);
+	}
+
+	@Override
+	public List<GalleryImgVO> getGalleryDetailImg(Integer g_num) {
+		return galleryMapper.getGalleryDetailImg(g_num);
+	}
+
 }

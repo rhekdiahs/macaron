@@ -9,6 +9,8 @@ public interface GalleryService {
 
 	public List<GalleryVO>getGalleryList(String g_cookie);
 	
+	public GalleryImgVO getThumbImg(Integer g_num);
+	
 	public void insertGallery(Integer mem_num);
 	
 	public void insertGalleryContent(GalleryVO gallery);
@@ -18,4 +20,6 @@ public interface GalleryService {
 	public Integer getG_num();
 	
 	public GalleryVO getGalleryDetail(Integer g_num);
+	
+	public List<GalleryImgVO> getGalleryDetailImg(Integer g_num);
 }

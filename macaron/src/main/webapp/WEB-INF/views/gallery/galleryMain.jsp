@@ -15,12 +15,12 @@
 	<div id = "gallery_main_div">
 		<ul id = "gallery_list_ul">
 		<c:if test="${!empty list}">
-			<c:forEach var = "list" items = "${list}">
+			<c:forEach var = "list" items = "${list}" varStatus = 'status'>
 			<li>
 				<a href = "${pageContext.request.contextPath}/gallery/detail.do?g_num=${list.g_num}">
 				<div class = "gallery-item-wrap">
 					<div class = "gallery-item-image">
-						<img src = "../image_bundle/gal_sample.jpg">
+						<img src = "${imgList[status.index]}">
 					</div>
 					<div class = "gallery-item-text">
 						<p class = "gallery-item-text-date font-White"><fmt:formatDate value = "${list.g_date}" pattern ="yyyy.MM.dd" type = "date"/></p>
@@ -31,8 +31,16 @@
 				</a>
 			</li>
 			</c:forEach>
+		</c:if>
+		<c:if test = "${empty list}">
+			<div id = "empty-div">
+				<div>
+					<img src = "../image_bundle/birds.png">
+					<p>아직 등록한 추억이 없어요</p>
+				</div>
+			</div>
 		</c:if>	
-			<li>
+<!--  			<li>
 				<div class = "gallery-item-wrap">
 					<div class = "gallery-item-image">
 						<img src = "../image_bundle/gal_sample.jpg">
@@ -43,55 +51,7 @@
 						<p class = "gallery-item-text-loc font-White">반포 한강공원</p>
 					</div>
 				</div>
-			</li>
-			<li>
-				<div class = "gallery-item-wrap">
-					<div class = "gallery-item-image">
-						<img src = "../image_bundle/gal_sample.jpg">
-					</div>
-					<div class = "gallery-item-text">
-						<p class = "gallery-item-text-date font-White">2023.07.10</p>
-						<p class = "gallery-item-text-title font-White">야경 본 날</p>
-						<p class = "gallery-item-text-loc font-White">반포 한강공원</p>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class = "gallery-item-wrap">
-					<div class = "gallery-item-image">
-						<img src = "../image_bundle/gal_sample.jpg">
-					</div>
-					<div class = "gallery-item-text">
-						<p class = "gallery-item-text-date font-White">2023.07.10</p>
-						<p class = "gallery-item-text-title font-White">야경 본 날</p>
-						<p class = "gallery-item-text-loc font-White">반포 한강공원</p>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class = "gallery-item-wrap">
-					<div class = "gallery-item-image">
-						<img src = "../image_bundle/gal_sample.jpg">
-					</div>
-					<div class = "gallery-item-text">
-						<p class = "gallery-item-text-date font-White">2023.07.10</p>
-						<p class = "gallery-item-text-title font-White">야경 본 날</p>
-						<p class = "gallery-item-text-loc font-White">반포 한강공원</p>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class = "gallery-item-wrap">
-					<div class = "gallery-item-image">
-						<img src = "../image_bundle/gal_sample.jpg">
-					</div>
-					<div class = "gallery-item-text">
-						<p class = "gallery-item-text-date font-White">2023.07.10</p>
-						<p class = "gallery-item-text-title font-White">야경 본 날</p>
-						<p class = "gallery-item-text-loc font-White">반포 한강공원</p>
-					</div>
-				</div>
-			</li>
+			</li>  -->
 		</ul>
 	</div>
 	<!-- 글쓰기 폼 시작 -->
