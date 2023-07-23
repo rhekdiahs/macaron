@@ -19,10 +19,10 @@ create table member_detail(
 
 create table calendar (
 	cal_num int not null auto_increment primary key,
-	cal_date date not null,
+	date_start date not null,
+	date_end date,
 	cal_category int not null,
-	cal_content varchar(200) not null,
+	cal_title varchar(200) not null,
 	cal_memo varchar(200),
-	mem_num int not null,
-	constraint cal_fk1 foreign key(mem_num) references member(mem_num)
+	mem_cookie varchar(30) not null unique key,
 )default CHARSET=utf8;
