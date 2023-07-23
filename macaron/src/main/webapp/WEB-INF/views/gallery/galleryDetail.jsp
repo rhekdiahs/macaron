@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/galleryDetail.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryDetailCarousel.js"></script>
 
@@ -57,8 +58,10 @@
 				<div class = "reply">
 					<span><strong>앵밀</strong> | </span>
 					<span>2023.07.17</span>
+					<a><span><small>수정</small></span></a>
 					<div>
 						<p>좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.</p>
+						
 					</div>
 				</div>
 				<hr style = "border : 1px solid whitesmoke;">
@@ -68,6 +71,7 @@
 				<div class = "reply">
 					<span><strong>앵밀</strong> | </span>
 					<span>2023.07.17</span>
+					<a><span><small>수정</small></span></a>
 					<div>
 						<p>좋았슴니다.</p>
 					</div>
@@ -75,7 +79,23 @@
 				<hr style = "border : 1px solid whitesmoke;">
 			</li>
 		</ul>
-</div>
+		<div id ="reply_input_wrap">
+			<form:form action = "write_reply.do" method = "post" modelAttribute = "galleryReplyVO" id = "gallery_replyForm">
+				<input type = "hidden" name = "g_num" value = "${gallery.g_num }">
+				<ul id = "reply_input_ul">
+					<li>
+						<img src = "../image_bundle/mypage_icon.png">
+					</li>
+					<li>
+						<input type = "text" name = "re_content" placeholder = "댓글 달기..." maxlength = "300">
+					</li>
+					<li>
+						<input type = "button" value = "게시">
+					</li>
+				</ul>
+			</form:form>
+		</div>
+	</div>
 </div>
 
 <div style = "margin-bottom : 40px;">

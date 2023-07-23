@@ -11,7 +11,7 @@ $(function(){
 	
 	upload.addEventListener("change", function(){
 		let files = this.files;
-		
+		console.log(files);
 		curImageCount += files.length;
 		
 		if(curImageCount > maxImageCount){

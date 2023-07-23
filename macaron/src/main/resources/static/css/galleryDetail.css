@@ -103,3 +103,48 @@
 	margin : 0;
 	font-size : 15px;
 }
+#reply_input_wrap{
+	width : 100%;
+	box-sizing : border-box;
+}
+#gallery_replyForm{
+	width : 100%;
+}
+#reply_input_ul{
+	margin : 5px auto;
+	padding : 0 0 10px 0;
+	display : flex;
+    line-height: 30px;
+}
+#reply_input_ul li{
+	height : 30px;
+}
+#reply_input_ul img{
+	width : 25px;
+	height : 25px;
+	margin-right : 10px;
+	vertical-align: middle;
+}
+#reply_input_ul [type="text"]:focus{
+	outline : none;
+}
+#reply_input_ul [type="text"]{
+	border : none;
+	height: 30px;
+	padding : 0;
+	box-sizing : border-box;
+	width : 70vw;
+	vertical-align: middle;
+}
+#reply_input_ul [type="button"]{
+	border : none;
+	background : none;
+	font-weight : bold;
+	height: 30px;
+	box-sizing : border-box;
+	width : 100%;
+    vertical-align: middle;
+}
+#reply_input_ul li:last-child{
+	margin-left : auto;
+}
