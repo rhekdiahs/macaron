@@ -136,7 +136,7 @@
 	width : 70vw;
 	vertical-align: middle;
 }
-#reply_input_ul [type="button"]{
+#reply_input_ul [type="submit"]{
 	border : none;
 	background : none;
 	font-weight : bold;

@@ -4,6 +4,7 @@
 <%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/galleryDetail.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryDetailCarousel.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryReply.js"></script>
 
 <div id = "detail_title_wrap">
 	<p>${gallery.g_title}</p>
@@ -50,38 +51,42 @@
 		</p>
 	</div>
 	<div id = "detail_reply_wrap">
-		<p id = "reply_header">댓글</p>
-		
-		<ul id = "reply_list">
-			<li>
-				<img src = "../image_bundle/mypage_icon.png">
-				<div class = "reply">
-					<span><strong>앵밀</strong> | </span>
-					<span>2023.07.17</span>
-					<a><span><small>수정</small></span></a>
-					<div>
-						<p>좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.좋았슴니다.</p>
-						
+	<c:if test = "${empty replyList }">
+	<ul id = "reply_list"></ul>
+	</c:if>
+	<c:if test = "${!empty replyList}">
+		<p id="reply_header">댓글</p>
+		<ul id="reply_list">
+			<c:forEach var="list" items="${replyList}" varStatus="status">
+				<li>
+					<img src="../image_bundle/mypage_icon.png">
+					<div class="reply">
+						<span><strong>${list.mem_nick}</strong> | </span> <span>${list.re_date}</span>
+						<a><span><small>수정</small></span></a>
+						<div>
+							<p>${list.re_content}</p>
+						</div>
 					</div>
+					<hr style="border: 1px solid whitesmoke;"></li>
+			</c:forEach>
+			<!-- 			<li>
+			<img src = "../image_bundle/mypage_icon.png">
+			<div class = "reply">
+				<span><strong>앵밀</strong> | </span>
+				<span>2023.07.17</span>
+				<a><span><small>수정</small></span></a>
+				<div>
+					<p>좋았슴니다.</p>
 				</div>
-				<hr style = "border : 1px solid whitesmoke;">
-			</li>
-			<li>
-				<img src = "../image_bundle/mypage_icon.png">
-				<div class = "reply">
-					<span><strong>앵밀</strong> | </span>
-					<span>2023.07.17</span>
-					<a><span><small>수정</small></span></a>
-					<div>
-						<p>좋았슴니다.</p>
-					</div>
-				</div>
-				<hr style = "border : 1px solid whitesmoke;">
-			</li>
+			</div>
+			<hr style = "border : 1px solid whitesmoke;">
+		</li> -->
 		</ul>
+	</c:if>
 		<div id ="reply_input_wrap">
 			<form:form action = "write_reply.do" method = "post" modelAttribute = "galleryReplyVO" id = "gallery_replyForm">
 				<input type = "hidden" name = "g_num" value = "${gallery.g_num }">
+				<input type = "hidden" name = "mem_num" value = "${user.mem_num}">
 				<ul id = "reply_input_ul">
 					<li>
 						<img src = "../image_bundle/mypage_icon.png">
@@ -90,7 +95,7 @@
 						<input type = "text" name = "re_content" placeholder = "댓글 달기..." maxlength = "300">
 					</li>
 					<li>
-						<input type = "button" value = "게시">
+						<input type = "submit" id = "replySubmitBtn" value = "게시" disabled ="disabled">
 					</li>
 				</ul>
 			</form:form>

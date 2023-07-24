@@ -6,6 +6,7 @@ public class GalleryReplyVO {
 	private int re_num;
 	private Date re_date;
 	private String re_content;
+	private String mem_nick;
 	private int g_num;
 	private int mem_num;
 	
@@ -38,6 +39,12 @@ public class GalleryReplyVO {
 	}
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+	public String getMem_nick() {
+		return mem_nick;
+	}
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
 	}
 	
 }

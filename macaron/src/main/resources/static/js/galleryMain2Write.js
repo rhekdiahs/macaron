@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	writeButton.addEventListener('click', function() {
 		curTop = window.pageYOffset;
+		console.log(curTop);
 
 		main2write(curTop);
 	});
@@ -37,12 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			main_footer.style.display = "none";
 		});
 		
-		if(curTop == '0'){
+		/*if(curTop == '0'){
 			gallery_write_div.style.top = curTop + 'px';
 		}else{
 			gallery_write_div.style.top = (curTop - header_height) + 'px';
-		}
-		
+		}*/
+		gallery_write_div.style.top = '0px';
 		gallery_write_div_wrap.style.display = "";
 		gallery_write_div.style.transform = "translateX(-100%)";
 		
@@ -65,6 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 			gallery_write_div.style.transform = "translateX(100%)";
 			gallery_wrap.style.height = "";
+			gallery_write_div.addEventListener("transitionend", function(){
+				window.scrollTo({top:curTop, left:0, behavior:'auto'});
+			});
 			
 			$('#main_header').slideDown(200);
 			$('#main_footer').slideDown(200);
@@ -83,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 			
 			$('html, body').removeClass('hidden');
+			
 		}				
 	}
 });

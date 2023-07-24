@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.gallery.dao.GalleryMapper;
 import kr.spring.gallery.vo.GalleryImgVO;
+import kr.spring.gallery.vo.GalleryReplyVO;
 import kr.spring.gallery.vo.GalleryVO;
 
 @Service
@@ -16,6 +17,14 @@ public class GalleryServiceImpl implements GalleryService{
 	
 	@Autowired
 	private GalleryMapper galleryMapper;
+	
+	@Override
+	public String getMem_nick(Integer mem_num) {
+		return galleryMapper.getMem_nick(mem_num);
+	}
+
+	
+	
 
 	@Override
 	public List<GalleryVO> getGalleryList(String g_cookie) {
@@ -56,5 +65,36 @@ public class GalleryServiceImpl implements GalleryService{
 	public List<GalleryImgVO> getGalleryDetailImg(Integer g_num) {
 		return galleryMapper.getGalleryDetailImg(g_num);
 	}
+
+	@Override
+	public List<GalleryReplyVO> getGalleryReplyList(Integer g_num) {
+		return galleryMapper.getGalleryReplyList(g_num);
+	}
+
+	@Override
+	public void insertGalleryReply(GalleryReplyVO galleryReply) {
+		galleryMapper.insertGalleryReply(galleryReply);
+	}
+
+	@Override
+	public GalleryReplyVO selectGalleryReply(Integer re_num) {
+		return galleryMapper.selectGalleryReply(re_num);
+	}
+
+	@Override
+	public void updateGalleryReply(GalleryReplyVO galleryReply) {
+		galleryMapper.updateGalleryReply(galleryReply);
+	}
+
+	@Override
+	public void deleteGalleryReply(Integer re_num) {
+		galleryMapper.deleteGalleryReply(re_num);
+	}
+
+	@Override
+	public void deleteAllGalleryReply(Integer g_num) {
+		galleryMapper.deleteAllGalleryReply(g_num);
+	}
+
 
 }

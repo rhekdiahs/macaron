@@ -1,5 +1,7 @@
 package kr.spring.gallery.controller;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.gallery.service.GalleryService;
 import kr.spring.gallery.vo.GalleryImgVO;
+import kr.spring.gallery.vo.GalleryReplyVO;
 import kr.spring.gallery.vo.GalleryVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.StringUtil;
@@ -90,11 +93,15 @@ public class GalleryController {
 	}
 	
 	@RequestMapping("/gallery/detail.do")
-	public String galleryDetail(@RequestParam int g_num, Model model) {
+	public String galleryDetail(@RequestParam int g_num, Model model, HttpSession session) {
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
 		
 		GalleryVO gallery = galleryService.getGalleryDetail(g_num);
 		
 		List<GalleryImgVO> list = galleryService.getGalleryDetailImg(g_num);
+		
+		List<GalleryReplyVO> replyList = galleryService.getGalleryReplyList(g_num);
 		
 		List<String> imgList = new ArrayList<>();
 		
@@ -128,8 +135,10 @@ public class GalleryController {
 		}
 		
 		model.addAttribute("imgList", imgList);
+		model.addAttribute("replyList", replyList);
 		model.addAttribute("gallery", gallery);
 		model.addAttribute("hashtag", hashtag);
+		model.addAttribute("user", user);
 		
 		return "galleryDetail";
 	}
@@ -159,9 +168,7 @@ public class GalleryController {
 	public Map<String, String> insertImage(GalleryImgVO galleryImg, HttpSession session){
 				
 		Map<String, String> mapAjax = new HashMap<String, String>();
-		
-		//위 ajax에서 리턴 받은 g_num ajax 송신할 때 세팅해주고 넘겨받자
-		
+				
 		try {
 			galleryService.insertGalleryImg(galleryImg);
 			
@@ -171,5 +178,33 @@ public class GalleryController {
 			mapAjax.put("result", "fail");			
 		}
 		return mapAjax;
+	}
+	
+	@RequestMapping("/gallery/insertReply.do")
+	@ResponseBody
+	public Map<String, Object> insertReply(GalleryReplyVO reply, HttpSession session){
+		
+		Map<String, Object> mapAjax = new HashMap<String, Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {
+			mapAjax.put("result","logout");
+		}else {
+			reply.setMem_num(user.getMem_num());
+			
+			galleryService.insertGalleryReply(reply);
+			
+			LocalDate now = LocalDate.now();
+			
+			Date date = Date.valueOf(now);
+			
+			reply.setRe_date(date);
+			
+			reply.setMem_nick(galleryService.getMem_nick(user.getMem_num()));
+			
+			mapAjax.put("reply", reply);
+			mapAjax.put("result", "success");
+		}
+		return mapAjax;		
 	}
 }
