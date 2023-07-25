@@ -19,6 +19,11 @@
 			<img id = "menu_insertBtn" src = "../image_bundle/free-icon-plus.png">
 		</a>
 	</c:if>
+	<c:if test = "${fn:contains(curAddress, 'cal/main')}">
+		<a class = "menu-icon" id = "menu_icon">
+			<img id = "menu_insertBtn" src = "../image_bundle/free-icon-plus.png">
+		</a>
+	</c:if>
 	<c:if test = "${fn:contains(curAddress, 'mypage/personal')}">
 		<a class = "menu-icon" id = "menu_icon_check">
 			<img id = "menu_insertBtn" src = "../image_bundle/check.png">
