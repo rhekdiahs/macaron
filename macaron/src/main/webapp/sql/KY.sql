@@ -19,9 +19,9 @@ create table member_detail(
 
 create table calendar (
 	cal_num int not null auto_increment primary key,
-	date_start date not null,
-	date_end date,
-	cal_category int not null,
+	date_start varchar(15) not null,
+	date_end varchar(15) not null,
+	cal_category varchar(15) not null,
 	cal_title varchar(200) not null,
 	cal_memo varchar(200),
 	mem_cookie varchar(30) not null unique key,

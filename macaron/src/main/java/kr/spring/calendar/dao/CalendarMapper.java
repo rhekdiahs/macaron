@@ -10,8 +10,8 @@ import kr.spring.calendar.vo.CalendarVO;
 
 @Mapper
 public interface CalendarMapper {
-	@Insert("insert into calendar (cal_date,cal_category,cal_title,cal_memo,mem_num) values (#{cal_date},#{cal_category},#{cal_title},#{cal_memo},#{mem_num})")
-	public void insertCal(CalendarVO cal);
+	@Insert("insert into calendar (date_start,date_end,cal_category,cal_title,cal_memo,mem_cookie) values (#{date_start},#{date_end},#{cal_category},#{cal_title},#{cal_memo},#{mem_cookie})")
+	public void insertCal(CalendarVO calendar);
 	
 	@Select("select * from calendar where mem_cookie=#{mem_cookie}")
 	public List<CalendarVO> allData(String mem_cookie);

@@ -115,6 +115,7 @@ hr{
     bottom: 0;
     width: 100%;
     background-color: #ccc;
+    cursor : pointer;
 }
 #submit_btn button{
 	border : none;
@@ -133,7 +134,9 @@ hr{
     color: #fff;
     border-radius: 0;
 }
-
+#submit_btn:not(disabled):hover {
+	cursor : pointer;
+}
 #placesList{
 	margin: 0;
 	padding : 0;

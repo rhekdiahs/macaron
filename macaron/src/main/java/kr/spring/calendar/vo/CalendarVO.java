@@ -1,13 +1,14 @@
 package kr.spring.calendar.vo;
 
-import java.sql.Date;
+import org.springframework.lang.Nullable;
 
 public class CalendarVO {
 	private int cal_num;
-	private Date date_start;
-	private Date date_end;
-	private int cal_category;
+	private String date_start;
+	private String date_end;
+	private String cal_category;
 	private String cal_title;
+	@Nullable
 	private String cal_memo;
 	private String mem_cookie;
 	
@@ -17,22 +18,22 @@ public class CalendarVO {
 	public void setCal_num(int cal_num) {
 		this.cal_num = cal_num;
 	}
-	public Date getDate_start() {
+	public String getDate_start() {
 		return date_start;
 	}
-	public void setDate_start(Date date_start) {
+	public void setDate_start(String date_start) {
 		this.date_start = date_start;
 	}
-	public Date getDate_end() {
+	public String getDate_end() {
 		return date_end;
 	}
-	public void setDate_end(Date date_end) {
+	public void setDate_end(String date_end) {
 		this.date_end = date_end;
 	}
-	public int getCal_category() {
+	public String getCal_category() {
 		return cal_category;
 	}
-	public void setCal_category(int cal_category) {
+	public void setCal_category(String cal_category) {
 		this.cal_category = cal_category;
 	}
 	public String getCal_title() {
