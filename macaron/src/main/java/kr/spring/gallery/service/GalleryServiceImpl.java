@@ -97,4 +97,12 @@ public class GalleryServiceImpl implements GalleryService{
 	}
 
 
+
+
+	@Override
+	public GalleryReplyVO selectRecentReply(GalleryReplyVO galleryReply) {
+		return galleryMapper.selectRecentReply(galleryReply);
+	}
+
+
 }

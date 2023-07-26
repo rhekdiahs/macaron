@@ -60,9 +60,9 @@
 			<c:forEach var="list" items="${replyList}" varStatus="status">
 				<li>
 					<img src="../image_bundle/mypage_icon.png">
-					<div class="reply">
+					<div class="reply" data-rnum = "${list.re_num}">
 						<span><strong>${list.mem_nick}</strong> | </span> <span>${list.re_date}</span>
-						<a><span><small>수정</small></span></a>
+						<a onclick = "modifyReply(this);" class = "modify-anchor"><span><small>수정</small></span></a>
 						<div>
 							<p>${list.re_content}</p>
 						</div>

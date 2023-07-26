@@ -194,11 +194,19 @@ public class GalleryController {
 			
 			galleryService.insertGalleryReply(reply);
 			
-			LocalDate now = LocalDate.now();
+			GalleryReplyVO galReply = galleryService.selectRecentReply(reply);
 			
-			Date date = Date.valueOf(now);
+			/*
+			 * LocalDate now = LocalDate.now();
+			 * 
+			 * Date date = Date.valueOf(now);
+			 */
 			
-			reply.setRe_date(date);
+			reply.setRe_num(galReply.getRe_num());
+			
+			reply.setG_num(galReply.getG_num());
+			
+			reply.setRe_date(galReply.getRe_date());
 			
 			reply.setMem_nick(galleryService.getMem_nick(user.getMem_num()));
 			
@@ -206,5 +214,66 @@ public class GalleryController {
 			mapAjax.put("result", "success");
 		}
 		return mapAjax;		
+	}
+	
+	
+	@RequestMapping("/gallery/deleteReply.do")
+	@ResponseBody
+	public Map<String, String> deleteReply(@RequestParam int re_num, HttpSession session){
+		
+		Map<String, String> mapAjax = new HashMap<String, String>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		GalleryReplyVO db_reply = galleryService.selectGalleryReply(re_num);
+		if(user == null) {
+			mapAjax.put("result", "logout");
+		}else if(user != null && user.getMem_num() == db_reply.getMem_num()) {
+			galleryService.deleteGalleryReply(re_num);
+			mapAjax.put("result", "success");
+		}else {
+			mapAjax.put("result", "wrongAccess");
+		}
+		return mapAjax;
+	}
+	
+	@RequestMapping("/gallery/checkModify.do")
+	@ResponseBody
+	public Map<String, String> checkModify(@RequestParam int re_num, HttpSession session){
+		
+		Map<String, String> mapAjax = new HashMap<String, String>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		GalleryReplyVO reply = galleryService.selectGalleryReply(re_num);
+		if(user == null) {
+			mapAjax.put("result", "logout");
+		}else if(user != null && user.getMem_num() == reply.getMem_num()) {
+			mapAjax.put("result", "check");
+		}else {
+			mapAjax.put("result", "wrongAccess");
+		}
+		return mapAjax;
+	}
+	
+	@RequestMapping("/gallery/modifyReply.do")
+	@ResponseBody
+	public Map<String, String> modifyReply(GalleryReplyVO reply, HttpSession session){
+		
+		Map<String, String> mapAjax = new HashMap<String, String>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		GalleryReplyVO db_reply = galleryService.selectGalleryReply(reply.getRe_num());
+		
+		if(user == null) {
+			mapAjax.put("result", "logout");
+		}else if(user != null && user.getMem_num() == db_reply.getMem_num()) {
+			galleryService.updateGalleryReply(reply);
+			mapAjax.put("content", reply.getRe_content());
+			mapAjax.put("result", "success");
+		}else {
+			mapAjax.put("result", "wrongAccess");
+		}
+		return mapAjax;
 	}
 }

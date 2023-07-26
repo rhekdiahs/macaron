@@ -54,11 +54,14 @@ public interface GalleryMapper {
 	//갤러리 댓글 저장하기
 	@Insert("INSERT INTO reply_gallery (re_content, g_num, mem_num) VALUES (#{re_content}, #{g_num}, #{mem_num})")
 	public void insertGalleryReply(GalleryReplyVO galleryReply);
+	//갤러리 방금 단 댓글 가져오기
+	@Select("SELECT * FROM reply_gallery WHERE g_num = #{g_num} AND mem_num = #{mem_num} ORDER BY re_date DESC limit 1")
+	public GalleryReplyVO selectRecentReply(GalleryReplyVO galleryReply);
 	//갤러리 댓글 하나 가져오기
 	@Select("SELECT * FROM reply_gallery WHERE re_num = #{re_num}")
 	public GalleryReplyVO selectGalleryReply(Integer re_num);
 	//갤러리 댓글 수정
-	@Update("UPDATE reply_gallery SET re_content = #{re_content}, re_date = curdate()")
+	@Update("UPDATE reply_gallery SET re_content = #{re_content} WHERE re_num = #{re_num}")
 	public void updateGalleryReply(GalleryReplyVO galleryReply);
 	//갤러리 댓글 하나 삭제
 	@Delete("DELETE FROM reply_gallery WHERE re_num = #{re_num}")

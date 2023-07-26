@@ -30,6 +30,8 @@ public interface GalleryService {
 	public List<GalleryReplyVO> getGalleryReplyList(Integer g_num);
 	//갤러리 댓글 저장하기
 	public void insertGalleryReply(GalleryReplyVO galleryReply);
+	//최근
+	public GalleryReplyVO selectRecentReply(GalleryReplyVO galleryReply);
 	//갤러리 댓글 하나 가져오기
 	public GalleryReplyVO selectGalleryReply(Integer re_num);
 	//갤러리 댓글 수정

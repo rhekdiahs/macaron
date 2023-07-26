@@ -148,3 +148,25 @@
 #reply_input_ul li:last-child{
 	margin-left : auto;
 }
+#modify_reply_input{
+	border : none;
+	height : 25px;
+	padding : 0;
+	margin-right : 15px;
+	width : 50vw;
+	box-sizing : border-box;
+	vertical-align : middle;
+}
+#modify_reply_input:focus{
+	outline : none;
+}
+.modify_reply_button{
+	border: none;
+	background : none;
+	font-weight : bold;
+	height : 25px;
+	box-sizing : border-box;
+	vertical-align : middle;
+	margin-left : 10px;
+	padding : 0;
+}
