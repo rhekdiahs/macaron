@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>    
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryDetailCarousel.js"></script> --%>
 
 <div id ="mypage_mem_info">
 	<ul id = "mypage_mem_info_list">
 		<li>
-			<img class = "profile_img" src = "../image_bundle/mypage_icon.png">
+			<img class = "profile_img" src = "../mypage/viewProfile.do?mem_num=${member.mem_num}">
 		</li>
 		<li>
-			<span>앵밀</span>
-			<p><small>test@test.com</small></p>
-			<p><small>커플번호:123124124124</small></p>
+			<span>${member.mem_nick }</span>
+			<p><small>${member.mem_email }</small></p>
+			<p><small>커플번호:${member.mem_cookie}</small></p>
 		</li>
 		<li>
 			<a href = "${pageContext.request.contextPath}/mypage/personal.do">
@@ -24,31 +27,30 @@
 	<div id = "mypage_couple_info">
 		<ul id = "mypage_couple_img">
 			<li>
-				<img class = "profile_img" src = "../image_bundle/mypage_icon.png">
+				<img class = "profile_img" src = "../mypage/viewProfile.do?mem_num=${member.mem_num}">
 			</li>
 			<li>
 				<img src = "../image_bundle/heart.png" width = "35" height = "35" style = "margin : 0 10px 0 10px">
 			</li>
 			<li>
-				<img class = "profile_img" src = "../image_bundle/mypage_icon.png">
+				<img class = "profile_img" src = "../mypage/viewProfile.do?mem_num=${partner}">
 			</li>
 		</ul>
 		<div id = "couple_since">
 			<p>오늘로</p>
-			<p id = "couple_today"><strong>000일</strong></p>
-			<span id= "couple_since"><small>since</small> 0000.00.00</span>
+			<p id = "couple_today"><strong>${since}일</strong></p>
+			<span id= "couple_since"><small>since</small>&nbsp;<fmt:formatDate value="${couple.cp_date}" pattern = "yyyy.MM.dd"/></span>
 		</div>
 		<div id = couple_anniversary>
-			<ul class = "couple_anniversary_list">
-				<li class = "couple_anni_date">
-					<span >200일</span>
-				</li>
-				<li class = "couple_anni_date_remain">
-					<span>00일 남음</span><br>
-					<span>0000.00.00</span>
-				</li>
-			</ul>
-			<ul class = "couple_anniversary_list">
+			<c:forEach var="list" items="${daylist}" varStatus="status">
+				<ul class="couple_anniversary_list">
+					<li class="couple_anni_date"><span>${list.day}일</span></li>
+					<li class="couple_anni_date_remain"><span>${list.remain}일 남음</span><br>
+						<span>${list.date }</span></li>
+				</ul>
+			</c:forEach>
+
+<!-- 			<ul class = "couple_anniversary_list">
 				<li class = "couple_anni_date">
 					<span >365일</span>
 				</li>
@@ -65,7 +67,7 @@
 					<span>00일 남음</span><br>
 					<span>0000.00.00</span>
 				</li>
-			</ul>
+			</ul> -->
 		</div>
 	</div>
 </div>

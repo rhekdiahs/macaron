@@ -35,7 +35,9 @@ $(function(){
 		
 		var curReply = event.target.closest(".reply");
 		
+		console.log(curReply);
 		if(curReply == null) return;
+		
 		
 		longTouch(curReply, 500, function(){
 			if(selectOne == true) return;
@@ -47,7 +49,6 @@ $(function(){
 			
 			main_header.style.background = "deepskyblue";
 			menu_alarmBtn.src = "../image_bundle/back.png";
-			
 			
 			var newLi = document.createElement("li");
 			top_menu.appendChild(newLi);
@@ -97,7 +98,11 @@ $(function(){
 			});
 		});
 	});
-	
+	window.oncontextmenu = function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		return false;
+	};
 });
 
 function updateReplyView(param){
