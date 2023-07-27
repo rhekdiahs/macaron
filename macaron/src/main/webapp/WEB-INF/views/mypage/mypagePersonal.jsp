@@ -73,7 +73,7 @@
 			<span>회원탈퇴</span>
 		</li>
 		<li>
-			<a>
+			<a onclick = "deleteCheck()">
 				<img src = "../image_bundle/right-arrow.png" class = "nextBtn">
 			</a>
 		</li>
@@ -90,6 +90,12 @@ function checkLogout(){
 		location.href = "${pageContext.request.contextPath}/member/logout.do";
 	}else{
 		return;
+	}
+}
+function deleteCheck(){
+	var check = confirm("탈퇴할까요?");
+	if(check){
+		location.href = "${pageContext.request.contextPath}/mypage/deleteMember.do?mem_num=${member.mem_num}"
 	}
 }
 </script>

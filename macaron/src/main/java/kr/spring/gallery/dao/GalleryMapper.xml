@@ -3,7 +3,18 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.gallery.dao.GalleryMapper">
-
+	<delete id = "deleteGalleryImg">
+		DELETE FROM img_gallery WHERE g_num IN
+		<foreach collection = "g_numList" item = "g_num" open = "(" close = ")" separator = ",">
+			#{g_num}
+		</foreach>
+	</delete>
+	<delete id = "deleteAllGalleryReply">
+		DELETE FROM reply_gallery WHERE g_num IN
+		<foreach collection = "g_numList" item = "g_num" open = "(" close = ")" separator = ",">
+			#{g_num}
+		</foreach>
+	</delete>
 </mapper>
 
 

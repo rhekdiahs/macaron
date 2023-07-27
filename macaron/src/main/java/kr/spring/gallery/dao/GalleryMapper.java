@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -70,10 +71,20 @@ public interface GalleryMapper {
 	//갤러리 댓글 하나 삭제
 	@Delete("DELETE FROM reply_gallery WHERE re_num = #{re_num}")
 	public void deleteGalleryReply(Integer re_num);
+	
+	
 	//갤러리 글 삭제시 댓글 모두 삭제
-	@Delete("DELETE FROM reply_gallery WHERE g_num = #{g_num}")
-	public void deleteAllGalleryReply(Integer g_num);
+	/* @Delete("DELETE FROM reply_gallery WHERE g_num = #{g_num}") */
 	
 	
 	
+	@Select("SELECT g_num FROM gallery WHERE g_cookie = #{g_cookie}")
+	public int[] selectGnumForDelete(String g_cookie);
+	
+	public void deleteGalleryImg(@Param(value = "g_numList") int[] gnum);
+	
+	public void deleteAllGalleryReply(@Param(value = "g_numList") int[] gnum);
+	
+	@Delete("DELETE FROM gallery WHERE g_cookie = #{g_cookie}")
+	public void deleteGallery(String g_cookie);
 }

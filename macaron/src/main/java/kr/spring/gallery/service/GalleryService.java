@@ -41,6 +41,7 @@ public interface GalleryService {
 	public void updateGalleryReply(GalleryReplyVO galleryReply);
 	//갤러리 댓글 하나 삭제
 	public void deleteGalleryReply(Integer re_num);
-	//갤러리 글 삭제시 댓글 모두 삭제
-	public void deleteAllGalleryReply(Integer g_num);
+
+	
+	public void deleteGallery(String g_cookie);
 }

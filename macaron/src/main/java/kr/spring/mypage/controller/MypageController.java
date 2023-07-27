@@ -160,6 +160,24 @@ public class MypageController {
 		return mapAjax;
 	}
 	
+	@RequestMapping("/mypage/deleteMember.do")
+	public String delete(int mem_num, HttpSession session, Model model) {
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MemberVO member = galleryService.getMember(user.getMem_num());
+		
+		if(user.getMem_num() == member.getMem_num()) {
+			galleryService.deleteGallery(member.getMem_cookie());
+			
+			session.invalidate();
+			
+			model.addAttribute("message", "회원탈퇴 완료");
+	        model.addAttribute("url", "/member/login.do");
+		}
+		
+		return "common/resultView";
+	}
+	
 	
 	public void viewProfile(MemberVO member, HttpServletRequest request, Model model) {
 		if(member.getMem_photo() == null) {

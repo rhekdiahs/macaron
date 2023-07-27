@@ -92,12 +92,6 @@ public class GalleryServiceImpl implements GalleryService{
 		galleryMapper.deleteGalleryReply(re_num);
 	}
 
-	@Override
-	public void deleteAllGalleryReply(Integer g_num) {
-		galleryMapper.deleteAllGalleryReply(g_num);
-	}
-
-
 
 
 	@Override
@@ -111,6 +105,15 @@ public class GalleryServiceImpl implements GalleryService{
 	@Override
 	public MemberVO getMember(Integer mem_num) {
 		return galleryMapper.getMember(mem_num);
+	}
+
+
+	@Override
+	public void deleteGallery(String g_cookie) {
+		int[] g_numList = galleryMapper.selectGnumForDelete(g_cookie);
+		galleryMapper.deleteGalleryImg(g_numList);
+		galleryMapper.deleteAllGalleryReply(g_numList);
+		galleryMapper.deleteGallery(g_cookie);
 	}
 
 
