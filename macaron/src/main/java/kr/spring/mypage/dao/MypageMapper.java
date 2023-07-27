@@ -21,4 +21,7 @@ public interface MypageMapper {
 	
 	@Select("SELECT mem_num FROM member_detail WHERE mem_email = #{mem_email}")
 	public Integer getPartner(String mem_email);
+	
+	@Update("UPDATE member_detail SET mem_nick = #{mem_nick}, mem_phone = #{mem_phone} WHERE mem_num = #{mem_num}")
+	public void updateMember(MemberVO member);
 }

@@ -11,12 +11,16 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.gallery.vo.GalleryImgVO;
 import kr.spring.gallery.vo.GalleryReplyVO;
 import kr.spring.gallery.vo.GalleryVO;
+import kr.spring.member.vo.MemberVO;
 
 @Mapper
 public interface GalleryMapper {
 	
 	@Select("SELECT mem_nick FROM member_detail WHERE mem_num = #{mem_num}")
 	public String getMem_nick(Integer mem_num);
+	
+	@Select("SELECT * FROM member m JOIN member_detail d ON m.mem_num=d.mem_num WHERE m.mem_num = #{mem_num}")
+	public MemberVO getMember(Integer mem_num);
 	
 	
 	/*==================================

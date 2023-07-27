@@ -11,4 +11,6 @@ public interface MypageService {
 	public CoupleVO selectCouple(String cp_cookie);
 	
 	public Integer getPartner(String mem_email);
+	
+	public void updateMember(MemberVO member);
 }

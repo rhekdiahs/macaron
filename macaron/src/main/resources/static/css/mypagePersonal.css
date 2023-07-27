@@ -40,3 +40,51 @@
 	opacity : 0.5;
     vertical-align: middle;
 }
+.background{
+	display: none;
+	position : fixed;
+	inset : 0;
+	background : rgba(0,0,0,0.5);
+	z-index : 10;	
+}
+#profile_modal{
+	display:none;
+	width : 250px;
+	height : 320px;
+	position : fixed;
+	padding : 0.5rem;
+	top : 50%;
+	left: 50%;
+	translate : -50% -50%;
+	background : white;
+	border : 2px solid black;
+	border-radius : 10px;
+	text-align: center;
+	z-index : 11;
+}
+#profile_modal img{
+	width : 145px;
+	height : 145px;
+	margin : 10px 0 20px 0;
+}
+.background.open, #profile_modal.open{
+	display : block;
+}
+#profile_modal label{
+	background : none;
+	display: block;
+    font-weight: 600;
+    padding: 7px 0;
+    margin-bottom : 20px;
+	border : 1px solid #e1e5e7;
+	box-shadow : 0 1px 3px 0 rgba(0,0,0,.03);
+	border-radius : 5px;
+	text-align : center;
+}
+.modal-btn{
+	border : 1px solid lightgray;
+	border-radius : 5px;
+	background : none;
+	padding : 3px 5px;
+	margin : 0 3px;
+}

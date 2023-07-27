@@ -5,10 +5,13 @@ import java.util.List;
 import kr.spring.gallery.vo.GalleryImgVO;
 import kr.spring.gallery.vo.GalleryReplyVO;
 import kr.spring.gallery.vo.GalleryVO;
+import kr.spring.member.vo.MemberVO;
 
 public interface GalleryService {
 	
 	public String getMem_nick(Integer mem_num);
+	
+	public MemberVO getMember(Integer mem_num);
 
 	public List<GalleryVO>getGalleryList(String g_cookie);
 	

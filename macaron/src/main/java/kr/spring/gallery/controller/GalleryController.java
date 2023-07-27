@@ -38,6 +38,8 @@ public class GalleryController {
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
+		if(user == null) return "redirect:/member/login.do";
+		
 		List<GalleryVO> list = galleryService.getGalleryList(user.getMem_cookie());
 		
 		List<String> imgList = new ArrayList<>();

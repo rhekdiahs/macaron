@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.couple.vo.CoupleVO;
+import kr.spring.gallery.dao.GalleryMapper;
+import kr.spring.gallery.service.GalleryService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.mypage.service.MypageService;
 import kr.spring.util.FileUtil;
@@ -32,6 +34,9 @@ public class MypageController {
 	
 	@Autowired
 	private MypageService mypageService;
+	
+	@Autowired
+	private GalleryService galleryService;
 	
 	@RequestMapping("/mypage/main.do")
 	public String main(HttpSession session, Model model) {
@@ -123,11 +128,38 @@ public class MypageController {
 		
 		return "myPage";
 	}
+
 	@RequestMapping("/mypage/personal.do")
-	public String personal() {
+	public String personal(HttpSession session, Model model) {
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		MemberVO member = galleryService.getMember(user.getMem_num());
+		
+		model.addAttribute("member", member);
 		
 		return "myPagePersonal";
 	}
+	
+	@RequestMapping("/mypage/updateMember.do")
+	@ResponseBody
+	public Map<String, String> update(MemberVO member, HttpSession session) {
+		
+		Map<String, String> mapAjax = new HashMap<>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		member.setMem_num(user.getMem_num());
+		try {
+			mypageService.updateMember(member);
+			mapAjax.put("result", "success");
+		}catch(Exception e) {
+			e.printStackTrace();
+			mapAjax.put("result", "fail");
+		}		
+		return mapAjax;
+	}
+	
 	
 	public void viewProfile(MemberVO member, HttpServletRequest request, Model model) {
 		if(member.getMem_photo() == null) {
@@ -137,6 +169,7 @@ public class MypageController {
 			model.addAttribute("imageFile", member.getMem_photo());
 		}
 	}
+	
 	@RequestMapping("/mypage/viewProfile.do")
 	public String getProfileByMem_num(@RequestParam int mem_num, HttpSession session, HttpServletRequest request, Model model) {
 		
@@ -146,6 +179,7 @@ public class MypageController {
 		
 		return "imageView";
 	}
+	
 	@RequestMapping("/mypage/updateProfileImg.do")
 	@ResponseBody
 	public Map<String, String> updateProfile(MemberVO member, HttpSession session){

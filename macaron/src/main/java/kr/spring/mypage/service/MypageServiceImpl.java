@@ -36,4 +36,9 @@ public class MypageServiceImpl implements MypageService{
 		return mypageMapper.getPartner(mem_email);
 	}
 
+	@Override
+	public void updateMember(MemberVO member) {
+		mypageMapper.updateMember(member);
+	}
+
 }

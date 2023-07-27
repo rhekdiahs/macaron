@@ -10,6 +10,7 @@ import kr.spring.gallery.dao.GalleryMapper;
 import kr.spring.gallery.vo.GalleryImgVO;
 import kr.spring.gallery.vo.GalleryReplyVO;
 import kr.spring.gallery.vo.GalleryVO;
+import kr.spring.member.vo.MemberVO;
 
 @Service
 @Transactional
@@ -102,6 +103,14 @@ public class GalleryServiceImpl implements GalleryService{
 	@Override
 	public GalleryReplyVO selectRecentReply(GalleryReplyVO galleryReply) {
 		return galleryMapper.selectRecentReply(galleryReply);
+	}
+
+
+
+
+	@Override
+	public MemberVO getMember(Integer mem_num) {
+		return galleryMapper.getMember(mem_num);
 	}
 
 
