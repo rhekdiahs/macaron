@@ -11,6 +11,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -50,8 +51,7 @@ public class MypageController {
 		CoupleVO couple = mypageService.selectCouple(member.getMem_cookie());
 		
 		String partnerEmail = null;
-		System.out.println(member.getMem_email());
-		System.out.println(couple.getCp_1());
+		
 		if(member.getMem_email().equals(couple.getCp_1())) {
 			partnerEmail = couple.getCp_2();
 		}else {
@@ -79,7 +79,7 @@ public class MypageController {
 				Calendar firstDateC = new GregorianCalendar();
 				firstDateC.setTimeInMillis(couple.getCp_date().getTime());
 				Date firstDateD = firstDateC.getTime();
-				
+
 				System.out.println(firstDateD);
 				
 				Calendar nowDateC = Calendar.getInstance();
@@ -89,7 +89,8 @@ public class MypageController {
 				
 				long diff = nowDateD.getTime() - firstDateD.getTime();
 				
-				since = ((diff / (24 * 60 * 60 * 1000L)) % 365) + 1;
+				since = TimeUnit.MILLISECONDS.toDays(diff) + 1;
+				System.out.println(since);
 				
 			} catch (ParseException e) {
 				e.printStackTrace();

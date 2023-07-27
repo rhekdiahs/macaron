@@ -44,7 +44,16 @@
 		<div id = couple_anniversary>
 			<c:forEach var="list" items="${daylist}" varStatus="status">
 				<ul class="couple_anniversary_list">
-					<li class="couple_anni_date"><span>${list.day}일</span></li>
+					<li class="couple_anni_date">
+						<span>
+							<c:if test="${list.day % 365 == 0}">
+								<fmt:formatNumber value = "${list.day/365}"/>주년
+							</c:if>
+							<c:if test = "${list.day % 365 != 0}">
+								${list.day}일
+							</c:if>
+						</span>
+					</li>
 					<li class="couple_anni_date_remain"><span>${list.remain}일 남음</span><br>
 						<span>${list.date }</span></li>
 				</ul>
