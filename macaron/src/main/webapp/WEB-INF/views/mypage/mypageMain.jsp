@@ -54,8 +54,18 @@
 							</c:if>
 						</span>
 					</li>
-					<li class="couple_anni_date_remain"><span>${list.remain}일 남음</span><br>
-						<span>${list.date }</span></li>
+					<li class="couple_anni_date_remain">
+						<span>
+							<c:if test = "${list.remain == 0}">
+								오늘!
+							</c:if>
+							<c:if test = "${list.remain != 0 }">
+								${list.remain}일 남음
+							</c:if>
+						</span>
+						<br>
+						<span>${list.date }</span>
+					</li>
 				</ul>
 			</c:forEach>
 

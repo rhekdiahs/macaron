@@ -70,33 +70,30 @@ public class MypageController {
 				Date date = format.parse(firstDate);
 				
 				long dateConv = date.getTime();
-				
+								
 				java.sql.Date sqlDate = new java.sql.Date(dateConv);
 				
 				couple.setCp_date(sqlDate);
 				
 				//-------------------------------------//
-				Calendar firstDateC = new GregorianCalendar();
-				firstDateC.setTimeInMillis(couple.getCp_date().getTime());
-				Date firstDateD = firstDateC.getTime();
-
-				System.out.println(firstDateD);
-				
-				Calendar nowDateC = Calendar.getInstance();
-				Date nowDateD = nowDateC.getTime();
-				
-				System.out.println(nowDateD);
-				
-				long diff = nowDateD.getTime() - firstDateD.getTime();
-				
-				since = TimeUnit.MILLISECONDS.toDays(diff) + 1;
-				System.out.println(since);
 				
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
-
+		
+		Calendar firstDateC = new GregorianCalendar();
+		firstDateC.setTimeInMillis(couple.getCp_date().getTime());
+		Date firstDateD = firstDateC.getTime();
+		
+		Calendar nowDateC = Calendar.getInstance();
+		Date nowDateD = nowDateC.getTime();
+		
+		
+		long diff = nowDateD.getTime() - firstDateD.getTime();
+		
+		since = TimeUnit.MILLISECONDS.toDays(diff) + 1;
+		
 		Map<String, Object> map1 = calcDate(((since.intValue()-1)/100 + 1) * 100, couple.getCp_date().toLocalDate());
 		Map<String, Object> map2 = calcDate((((since.intValue()-1)/100 + 1) * 100) + 100, couple.getCp_date().toLocalDate());
 		Map<String, Object> map3 = calcDate((((since.intValue()-1)/100 + 1) * 100) + 200, couple.getCp_date().toLocalDate());
