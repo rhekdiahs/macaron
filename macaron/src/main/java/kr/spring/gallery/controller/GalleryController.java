@@ -38,9 +38,12 @@ public class GalleryController {
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
+		
 		if(user == null) return "redirect:/member/login.do";
 		
-		List<GalleryVO> list = galleryService.getGalleryList(user.getMem_cookie());
+		MemberVO member = galleryService.getMember(user.getMem_num());
+		
+		List<GalleryVO> list = galleryService.getGalleryList(user.getMem_cookie(), 0, 5);
 		
 		List<String> imgList = new ArrayList<>();
 		
@@ -66,12 +69,51 @@ public class GalleryController {
 			imgList.add(i, fullBase64);
 		}
 		
+		model.addAttribute("member", member);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("list", list);
 		
 		return "galleryMain";
 	}
-	
+	@RequestMapping("/gallery/moreList.do")
+	@ResponseBody
+	public Map<String, Object> moreList(@RequestParam(value = "start") int start, @RequestParam(value = "end") int end, HttpSession session){
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		Map<String, Object> mapAjax = new HashMap<String, Object>();
+		
+		List<GalleryVO> list = galleryService.getGalleryList(user.getMem_cookie(), start, end);
+		
+		List<String> imgList = new ArrayList<>();
+		
+		for(int i = 0; i < list.size(); i++) {
+			int g_num = list.get(i).getG_num();
+			GalleryImgVO galleryImgVo = galleryService.getThumbImg(g_num);
+			String filename = galleryImgVo.getImg_filename();
+			byte[] galImg = galleryImgVo.getImg_file();
+
+			
+			String ext = filename.substring(filename.lastIndexOf("."));
+			if(ext.equalsIgnoreCase(".gif")) {
+				ext = "image/gif";
+			}else if(ext.equalsIgnoreCase(".png")) {
+				ext = "image/png";
+			}else {
+				ext = "image/jpeg";
+			}
+			
+			String galImg2Base64 = Base64.getEncoder().encodeToString(galImg);
+			String fullBase64 = "data:" + ext + ";base64, " + galImg2Base64;
+						
+			imgList.add(i, fullBase64);
+		}
+		
+		mapAjax.put("imgList", imgList);
+		mapAjax.put("list", list);
+		
+		return mapAjax;
+	}
 	
 	@GetMapping("/gallery/write.do")
 	public String galleryWriteForm() {
@@ -136,6 +178,7 @@ public class GalleryController {
 			gallery.setG_content(StringUtil.useBrNoHtml(gallery.getG_content()));
 		}
 		
+		model.addAttribute("member", user.getMem_num());
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("replyList", replyList);
 		model.addAttribute("gallery", gallery);

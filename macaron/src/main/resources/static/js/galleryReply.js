@@ -10,7 +10,6 @@ $(function(){
 	//댓글 등록
 	$('#gallery_replyForm').on('submit', function(e){
 		e.preventDefault();
-		
 		let form_data = $(this).serialize();
 		$.ajax({
 			url : "/gallery/insertReply.do",
@@ -112,7 +111,7 @@ function updateReplyView(param){
 	let newReplyLi = document.createElement('li');
 	
 	let profileImg = document.createElement('img');
-	profileImg.src = "../image_bundle/mypage_icon.png";
+	profileImg.src = "../mypage/viewProfile.do?mem_num="+param.mem_num;
 	
 	let replyDiv = document.createElement('div');
 	replyDiv.className = "reply";

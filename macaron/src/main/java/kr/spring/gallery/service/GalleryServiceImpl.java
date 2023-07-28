@@ -28,8 +28,8 @@ public class GalleryServiceImpl implements GalleryService{
 	
 
 	@Override
-	public List<GalleryVO> getGalleryList(String g_cookie) {
-		return galleryMapper.getGalleryList(g_cookie);
+	public List<GalleryVO> getGalleryList(String g_cookie, int start, int end) {
+		return galleryMapper.getGalleryList(g_cookie, start, end);
 	}
 
 	@Override

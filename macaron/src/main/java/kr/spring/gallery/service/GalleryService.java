@@ -13,7 +13,7 @@ public interface GalleryService {
 	
 	public MemberVO getMember(Integer mem_num);
 
-	public List<GalleryVO>getGalleryList(String g_cookie);
+	public List<GalleryVO>getGalleryList(String g_cookie, int start, int end);
 	
 	public GalleryImgVO getThumbImg(Integer g_num);
 	

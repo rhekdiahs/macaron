@@ -10,6 +10,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryMain2Write.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryFileInput.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/writeFormCheck.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/galleryMainList.js"></script>
 
 <div id = "for_slider_div">
 	<div id = "gallery_main_div">
@@ -70,7 +71,7 @@
 		</div>
 		<div id = "cont-wrap">
 			<div id = "writeInfo">
-				<img class = "profile-img" src = "../image_bundle/mypage_icon.png">
+				<img class = "profile-img" src = "../mypage/viewProfile.do?mem_num=${member.mem_num}">
 				<select id = "publish">
 					<option value = "public">전체공개</option>
 					<option value = "couple">커플보기</option>

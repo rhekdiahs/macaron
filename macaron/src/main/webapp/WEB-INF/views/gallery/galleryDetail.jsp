@@ -103,6 +103,7 @@
 		</div>
 	</div>
 </div>
+<span id = "mem_num" data-mem = "${member}" style = "display : none;"></span>
 
 <div style = "margin-bottom : 40px;">
 
