@@ -111,9 +111,11 @@ public class GalleryServiceImpl implements GalleryService{
 	@Override
 	public void deleteGallery(String g_cookie) {
 		int[] g_numList = galleryMapper.selectGnumForDelete(g_cookie);
-		galleryMapper.deleteGalleryImg(g_numList);
-		galleryMapper.deleteAllGalleryReply(g_numList);
-		galleryMapper.deleteGallery(g_cookie);
+		if(g_numList.length != 0) {
+			galleryMapper.deleteGalleryImg(g_numList);
+			galleryMapper.deleteAllGalleryReply(g_numList);
+			galleryMapper.deleteGallery(g_cookie);			
+		}
 	}
 
 

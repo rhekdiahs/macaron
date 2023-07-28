@@ -1,5 +1,6 @@
 package kr.spring.mypage.dao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -24,4 +25,10 @@ public interface MypageMapper {
 	
 	@Update("UPDATE member_detail SET mem_nick = #{mem_nick}, mem_phone = #{mem_phone} WHERE mem_num = #{mem_num}")
 	public void updateMember(MemberVO member);
+	
+	@Delete("DELETE FROM couple WHERE cp_cookie = #{cp_cookie}")
+	public void deleteCouple(String cp_cookie);
+	
+	@Update("UPDATE member SET mem_auth = 0 WHERE mem_num = #{mem_num}")
+	public void updateMemAuth(int mem_num);
 }

@@ -13,4 +13,8 @@ public interface MypageService {
 	public Integer getPartner(String mem_email);
 	
 	public void updateMember(MemberVO member);
+	
+	public void deleteCouple(String cp_cookie);
+		
+	public void updateMemAuth(int mem_num);
 }

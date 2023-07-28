@@ -163,9 +163,32 @@ public class MypageController {
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MemberVO member = galleryService.getMember(user.getMem_num());
+		CoupleVO couple = mypageService.selectCouple(member.getMem_cookie());
+		
+		String partnerEmail = null;
+		
+		if(member.getMem_email().equals(couple.getCp_1())) {
+			partnerEmail = couple.getCp_2();
+		}else {
+			partnerEmail = couple.getCp_1();
+		}
+		int partner = mypageService.getPartner(partnerEmail);
+		
+		MemberVO partnerVO = galleryService.getMember(partner);
 		
 		if(user.getMem_num() == member.getMem_num()) {
+			//갤러리 이미지, 댓글, 글 삭제
 			galleryService.deleteGallery(member.getMem_cookie());
+			
+			//캘린더 데이터 삭제 코드
+			
+			//상대가 탈퇴했으면 커플 테이블 삭제
+			if(partnerVO.getMem_auth() == 0) {
+				mypageService.deleteCouple(member.getMem_cookie());
+			}
+			
+			//권한 번호 0으로 세팅
+			mypageService.updateMemAuth(member.getMem_num());
 			
 			session.invalidate();
 			

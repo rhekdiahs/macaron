@@ -41,4 +41,14 @@ public class MypageServiceImpl implements MypageService{
 		mypageMapper.updateMember(member);
 	}
 
+	@Override
+	public void deleteCouple(String cp_cookie) {
+		mypageMapper.deleteCouple(cp_cookie);
+	}
+
+	@Override
+	public void updateMemAuth(int mem_num) {
+		mypageMapper.updateMemAuth(mem_num);
+	}
+
 }

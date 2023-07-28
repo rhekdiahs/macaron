@@ -23,6 +23,7 @@ $(function(){
 					location.href = "../memeber/login.do";
 				}else if(param.result == "success"){
 					updateReplyView(param.reply);
+					$('input[name=re_content]').val('');
 				}
 			},
 			error : function(){
