@@ -52,6 +52,7 @@
 	</div>
 	<div id = "detail_reply_wrap">
 	<c:if test = "${empty replyList }">
+	<p id="reply_header">댓글</p>
 	<ul id = "reply_list"></ul>
 	</c:if>
 	<c:if test = "${!empty replyList}">

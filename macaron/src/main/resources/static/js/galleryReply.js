@@ -24,6 +24,7 @@ $(function(){
 				}else if(param.result == "success"){
 					updateReplyView(param.reply);
 					$('input[name=re_content]').val('');
+					$('#replySubmitBtn').attr("disabled", true);
 				}
 			},
 			error : function(){
@@ -32,13 +33,12 @@ $(function(){
 		});
 	});
 	var selectOne;
-	$('.reply').on('touchstart', function(event){
+		
+	$(document).on('touchstart','.reply', function(event){
 		
 		var curReply = event.target.closest(".reply");
-		
-		console.log(curReply);
+
 		if(curReply == null) return;
-		
 		
 		longTouch(curReply, 500, function(){
 			if(selectOne == true) return;
