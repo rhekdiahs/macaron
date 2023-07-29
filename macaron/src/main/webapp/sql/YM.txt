@@ -5,7 +5,7 @@ create table gallery(
 	g_place varchar(100),
 	g_cookie varchar(50) not null,
 	g_hash varchar(1000),
-	g_data TIMESTAMP default now(),
+	g_date TIMESTAMP default now(),
 	mem_num INT not null,
 	constraint gallery_PK primary key(g_num),
 	foreign key (mem_num) references member(mem_num)
@@ -23,10 +23,10 @@ create table reply_gallery(
 
 create table couple(
 	cp_num INT not null primary key auto_increment,
-	cp_1 varchar(50) not null,
-	cp_2 varchar(50) not null,
+	cp_1 varchar(50),
+	cp_2 varchar(50),
 	cp_date date,
-	cp_cookie varchar(30) not null
+	cp_cookie varchar(30) unique key
 );
 
 create table img_gallery(

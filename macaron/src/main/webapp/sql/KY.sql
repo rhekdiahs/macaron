@@ -9,7 +9,7 @@ create table member_detail(
 	mem_nick varchar(30) not null,
 	mem_pw varchar(16) not null,
 	mem_phone varchar(13),
-	mem_email varchar(50) not null,
+	mem_email varchar(50) not null unique key,
 	mem_photo blob,
 	mem_regdate date not null default curdate(),
 	mem_cookie varchar(30),
@@ -24,5 +24,5 @@ create table calendar (
 	cal_category varchar(15) not null,
 	cal_title varchar(200) not null,
 	cal_memo varchar(200),
-	mem_cookie varchar(30) not null unique key,
+	mem_cookie varchar(30) not null,
 )default CHARSET=utf8;
