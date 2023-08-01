@@ -44,6 +44,12 @@
 		let start = $('.start').val().replace(/ - /gi,'-');
 		let end = $('.end').val().replace(/ - /gi,'-');
 		
+		//시작일-종료일 같게 셋팅
+/*		if(e.currentTarget.id == 'date_start') {
+			$('.end').datepicker( "setDate", new Date(start) );
+		}		
+*/
+		
 		if(new Date(end) - new Date(start) < 0){
 			alert('기간 설정이 올바르지 않습니다.');
 			$('.date_pick').datepicker( "setDate", new Date());

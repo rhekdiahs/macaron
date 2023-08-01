@@ -26,7 +26,7 @@
 					<ul id = "select-section">
 						<li class="hide">
 							<input type="checkbox" id="cal_category" name="cal_category" value="pink" onclick="checkOne(this)" checked /> 데이트
-							<input type="checkbox" id="cal_category" name="cal_category" value="lavendar" onclick="checkOne(this)"/> 기념일
+							<input type="checkbox" id="cal_category" name="cal_category" value="chartreuse" onclick="checkOne(this)"/> 기념일
 							<input type="checkbox" id="cal_category" name="cal_category" value="gray" onclick="checkOne(this)"/> 기타
 						</li>	
 						<li>

@@ -50,7 +50,7 @@
     	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>         
     </definition>
     
-	<definition name="calWrite" extends="calMain">
+	<definition name="calWrite" template="/WEB-INF/views/template/layout2.jsp">
     	<put-attribute name="title" value="캘린더 일정등록 페이지"/>
     	<put-attribute name="body" value="/WEB-INF/views/calendar/calendarWrite.jsp"/>     
     </definition>

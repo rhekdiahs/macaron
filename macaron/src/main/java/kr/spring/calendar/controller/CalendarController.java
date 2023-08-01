@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.calendar.service.CalendarService;
@@ -39,12 +40,12 @@ public class CalendarController {
 		return new CalendarVO();
 	}
 	
-	@RequestMapping("/cal/main.do")
+	@RequestMapping("/calendar/main.do")
 	public String main() {
 		return "calMain";
 	}
 	
-	@GetMapping("/cal/cal.do")
+	@GetMapping("/calendar/cal.do")
 	@ResponseBody
 	public List<Object> ajax(HttpSession session){
 		MemberVO member = (MemberVO)session.getAttribute("user");
@@ -58,10 +59,14 @@ public class CalendarController {
 		int ajax_len = ajax.size();
 		
 		for(int i=0;i<ajax_len;i++) {
+			map.put("cal_num", ajax.get(i).getCal_num());
 			map.put("title", ajax.get(i).getCal_title());
 			map.put("start", ajax.get(i).getDate_start());
 			map.put("end", ajax.get(i).getDate_end());
 			map.put("color", ajax.get(i).getCal_category());  
+			if(ajax.get(i).getCal_category().equals("chartreuse")) {
+				map.put("textColor", "#000");
+			}
 			
 			jsonObj = new JSONObject(map);
 			jsonArr.put(jsonObj);
@@ -70,12 +75,12 @@ public class CalendarController {
 		return jsonArr.toList(); 
 	}
 	
-	@GetMapping("/cal/write.do")
+	@GetMapping("/calendar/write.do")
 	public String calendarWriteForm() {
 		return "calWrite";
 	}
 	
-	@PostMapping("/cal/write.do")
+	@PostMapping("/calendar/write.do")
 	public String calendarWriteDone(HttpSession session, @ModelAttribute CalendarVO calendarVO, Model model) {
 		
 		MemberVO member = (MemberVO)session.getAttribute("user");
@@ -103,6 +108,15 @@ public class CalendarController {
 		
 		calendarService.insertCal(calendarVO);
 		
+		return "redirect:/calendar/main.do";
+	}
+	
+	/*
+	@RequestMapping("/cal/detail.do")
+	public String scheduleDetail(@RequestParam int cal_num) {
+		logger.debug("CAL_NUM CHECK >>>" + cal_num);
+		
 		return "redirect:/cal/main.do";
 	}
+	*/
 }
