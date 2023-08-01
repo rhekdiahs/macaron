@@ -8,7 +8,7 @@
 		</a>
 	</li>
 	<li>
-		<a class = "menu-icon" href="${pageContext.request.contextPath}/cal/main.do">
+		<a class = "menu-icon" href="${pageContext.request.contextPath}/calendar/main.do">
 			<img id = "menu_calendar" src = "../image_bundle/calendar.png">
 		</a>
 	</li>
