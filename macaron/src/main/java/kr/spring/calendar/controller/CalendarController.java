@@ -3,6 +3,7 @@ package kr.spring.calendar.controller;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,13 @@ public class CalendarController {
 	}
 	
 	@RequestMapping("/calendar/main.do")
-	public String main() {
+	public String main(HttpSession session) {
+		MemberVO member = (MemberVO)session.getAttribute("user");
+		
+		if(member == null) {
+			return "redirect:/member/login.do";
+		}
+		
 		return "calMain";
 	}
 	
@@ -87,7 +94,7 @@ public class CalendarController {
 		
 		String mem_cookie = member.getMem_cookie();
 		
-		DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		
 		try {
@@ -95,10 +102,11 @@ public class CalendarController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DATE, 1);
+		//cal.setTimeInMillis(cal.getTimeInMillis() + 1000*60*60*24);
 		
 		String date_end = format.format(cal.getTime());
 		
@@ -111,12 +119,15 @@ public class CalendarController {
 		return "redirect:/calendar/main.do";
 	}
 	
-	/*
-	@RequestMapping("/cal/detail.do")
-	public String scheduleDetail(@RequestParam int cal_num) {
+	
+	@PostMapping("/calendar/detail.do")
+	@ResponseBody
+	public CalendarVO scheduleDetail(@RequestParam int cal_num) {
 		logger.debug("CAL_NUM CHECK >>>" + cal_num);
 		
-		return "redirect:/cal/main.do";
+		CalendarVO schedule = calendarService.getOneData(cal_num);
+		
+		return schedule;
 	}
-	*/
+	
 }

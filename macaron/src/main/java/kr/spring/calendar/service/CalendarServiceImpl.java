@@ -23,7 +23,12 @@ public class CalendarServiceImpl implements CalendarService {
 
 	@Override
 	public List<CalendarVO> getAllData(String mem_cookie) {
-		return calendarMapper.allData(mem_cookie);
+		return calendarMapper.allDataList(mem_cookie);
+	}
+
+	@Override
+	public CalendarVO getOneData(int cal_num) {
+		return calendarMapper.getOneData(cal_num);
 	}
 
 	

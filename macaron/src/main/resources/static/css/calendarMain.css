@@ -95,3 +95,35 @@ div#calendar {
 	width : 30vw;
 	height : 30vw;
 }
+div#detail_container{
+	margin: 10px;
+    padding: 10px 10px 20px 10px;
+    box-shadow: 0px 3px 3px 0px gray;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    position: relative;
+}
+div#button_box{
+	text-align: end;
+}
+img#detail_close{
+	width:30px;
+	height:30px;
+}
+ul#detail_list{
+	padding:0;
+}
+ul#detail_list li{
+	margin:10px;
+}
+.detail-hide{
+	display:none;
+}
+/* .detail-set{
+	position: relative;
+    bottom: -45px;
+} */
+/* .detail-move{
+	transition: all 2s ease-out;
+}
+ */

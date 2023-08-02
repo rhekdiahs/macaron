@@ -8,4 +8,6 @@ public interface CalendarService {
 	public void insertCal(CalendarVO cal);
 	
 	public List<CalendarVO> getAllData(String mem_cookie);
+	
+	public CalendarVO getOneData(int cal_num);
 }

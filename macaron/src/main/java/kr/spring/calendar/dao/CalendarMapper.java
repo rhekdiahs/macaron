@@ -14,5 +14,8 @@ public interface CalendarMapper {
 	public void insertCal(CalendarVO calendar);
 	
 	@Select("select * from calendar where mem_cookie=#{mem_cookie}")
-	public List<CalendarVO> allData(String mem_cookie);
+	public List<CalendarVO> allDataList(String mem_cookie);
+	
+	@Select("select * from calendar where cal_num=#{cal_num}")
+	public CalendarVO getOneData(int cal_num);
 }

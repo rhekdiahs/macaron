@@ -75,6 +75,18 @@
 	</div>
 	<!-- 글쓰기 폼 끝 -->
 </div>
+<div id="detail_container" class="detail-hide">
+	<div id="button_box">
+		<a href="#">
+			<img id="detail_close" src = "../image_bundle/down.png">
+		</a>
+	</div>
+	<ul id="detail_list">
+		<li><strong id="detail_title"></strong></li>
+		<li><span id="detail_date" style="color:#939393;"></span></li>
+		<li id="detail_memo" style="color:#939393;"><span id="detail_memo"></span></li>
+	</ul>
+</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/calendar/writeFormCheck.js"></script>
 	<script>
 		document.addEventListener('DOMContentLoaded',function() {
@@ -137,8 +149,40 @@
 						eventClick : function(info){
 							let cal_num = info.event.extendedProps.cal_num;
 							
+							//일정 누르면 상세 뜸
 							$.ajax({
-								
+								url:'/calendar/detail.do',
+								dataType:'json',
+								type:'post',
+								data:{cal_num:cal_num},
+								success:function(param){
+									let date_end = new Date(param.date_end).getTime() - 1000*60*60*24;
+									let date_start = param.date_start.replace(/-/gi,'.');
+									//let date_end = param.date_end.replace(/-/gi,'.');
+
+									let diffMs = Math.abs(new Date(date_end) - new Date(param.date_start));
+									let diffDay = Math.ceil(diffMs/ (1000 * 60 * 60 *24));
+									
+									console.log(new Date(date_end).toISOString().split("T")[0]);
+									console.log(diffDay);
+									
+									$('#detail_title').html(param.cal_title);
+									$('#detail_memo').html(param.cal_memo);
+									if(diffDay < 1){
+										console.log('같음');
+										$('#detail_date').html(date_start);
+									}else{
+										date_end = new Date(date_end).toISOString().split("T")[0].replace(/-/gi,'.');
+										$('#detail_date').html(date_start + ' ~ ' + date_end);
+									}
+									
+									$('#detail_container').removeClass('detail-hide');
+									$('#detail_container').addClass('detail-move');
+									
+								},
+								error:function(param){
+									console.log('에러' + param);
+								}
 							});//eventClick ajax
 							
 							//location.href = 'detail.do?cal_num='+cal_num;
