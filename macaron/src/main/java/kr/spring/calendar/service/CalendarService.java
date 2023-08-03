@@ -10,4 +10,8 @@ public interface CalendarService {
 	public List<CalendarVO> getAllData(String mem_cookie);
 	
 	public CalendarVO getOneData(int cal_num);
+	
+	public void deleteSchedule(int cal_num);
+
+	public void editSchedule(CalendarVO calendar);
 }

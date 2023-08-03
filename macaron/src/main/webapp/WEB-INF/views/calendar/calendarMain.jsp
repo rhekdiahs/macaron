@@ -75,21 +75,41 @@
 	</div>
 	<!-- 글쓰기 폼 끝 -->
 </div>
-<div id="detail_container" class="detail-hide">
-	<div id="button_box">
-		<a href="#">
-			<img id="detail_close" src = "../image_bundle/down.png">
-		</a>
+	<div id="detail_container" class="detail-hide">
+		<div id="button_box">
+			<a id="detail_del" >
+				<img src = "../image_bundle/trash-bin.png">
+			</a>
+			<a id="detail_setting">
+				<img src = "../image_bundle/gear.png">
+			</a>
+			<a id="detail_close" >
+				<img src = "../image_bundle/down.png">
+			</a>
+		</div>
+		<ul id="detail_list">
+			<li><strong id="detail_title"></strong></li>
+			<li><span id="detail_date" style="color:#939393;"></span></li>
+			<li id="detail_memo" style="color:#939393;"><span id="detail_memo"></span></li>
+		</ul>
 	</div>
-	<ul id="detail_list">
-		<li><strong id="detail_title"></strong></li>
-		<li><span id="detail_date" style="color:#939393;"></span></li>
-		<li id="detail_memo" style="color:#939393;"><span id="detail_memo"></span></li>
-	</ul>
-</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/calendar/writeFormCheck.js"></script>
 	<script>
 		document.addEventListener('DOMContentLoaded',function() {
+			//console.log(document.body.offsetHeight);
+			//console.log(document.body.scrollHeight);
+			//console.log(document.body.clientHeight);
+			//screen.availHeight = 현재 스크린 높이
+			let footerHeight = document.getElementById('bottom_menu').offsetHeight;
+			let headerHeight = document.getElementById('top_menu').offsetHeight;
+			let calHeight = document.getElementById('calendar').offsetHeight;
+			let emptyHeight = screen.availHeight - headerHeight - footerHeight - calHeight;
+			let detailHeight = document.getElementById('detail_container').offsetHeight;
+			
+			console.log('공백의 높이 = ' + emptyHeight);
+			console.log('footer 바로 위 = ' + (screen.availHeight - footerHeight));
+			console.log('상세정보 = ' + detailHeight);
+						
 			$(function() {
 				var request = $.ajax({
 					url : '/calendar/cal.do',
@@ -163,9 +183,6 @@
 									let diffMs = Math.abs(new Date(date_end) - new Date(param.date_start));
 									let diffDay = Math.ceil(diffMs/ (1000 * 60 * 60 *24));
 									
-									console.log(new Date(date_end).toISOString().split("T")[0]);
-									console.log(diffDay);
-									
 									$('#detail_title').html(param.cal_title);
 									$('#detail_memo').html(param.cal_memo);
 									if(diffDay < 1){
@@ -177,7 +194,36 @@
 									}
 									
 									$('#detail_container').removeClass('detail-hide');
-									$('#detail_container').addClass('detail-move');
+									
+									$('#detail_del').click(function(){
+										var del_confirm = confirm('일정을 삭제할까요?');
+										
+ 										if(del_confirm){
+ 											location.href = '/calendar/delete.do?cal_num='+cal_num;
+											/* $.ajax({
+												url:'/calendar/delete.do',
+												type:'get',
+												data:{cal_num:cal_num},
+												dataType:'json',
+												success:function(param){
+													if(param.message == 'delete success'){
+														location.href = '/calendar/delete.do';
+													}else{
+														alert('DELETE ERROR');
+													}
+												}
+											}); */
+										} 
+										
+									});
+									
+									$('#detail_setting').click(function(){
+										var edit_confirm = confirm('일정을 수정할까요?');
+										
+										if(edit_confirm){
+											location.href = '/calendar/edit.do?cal_num='+cal_num;
+										}
+									});
 									
 								},
 								error:function(param){

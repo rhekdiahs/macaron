@@ -54,4 +54,9 @@
     	<put-attribute name="title" value="캘린더 일정등록 페이지"/>
     	<put-attribute name="body" value="/WEB-INF/views/calendar/calendarWrite.jsp"/>     
     </definition>
+    
+    <definition name="calEdit" extends="calMain">
+    	<put-attribute name="title" value="일정 수정 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/calendar/calendarEdit.jsp"/>     
+    </definition>
 </tiles-definitions>

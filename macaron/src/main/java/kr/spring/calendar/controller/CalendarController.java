@@ -3,7 +3,6 @@ package kr.spring.calendar.controller;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -116,7 +115,10 @@ public class CalendarController {
 		
 		calendarService.insertCal(calendarVO);
 		
-		return "redirect:/calendar/main.do";
+		model.addAttribute("message", "일정이 등록되었습니다.");
+        model.addAttribute("url", "/main/main.do");
+        
+		return "common/resultView";
 	}
 	
 	
@@ -130,4 +132,29 @@ public class CalendarController {
 		return schedule;
 	}
 	
+	@RequestMapping("/calendar/delete.do")
+	public String delete(@RequestParam int cal_num, Model model){
+		
+		calendarService.deleteSchedule(cal_num);
+		
+		if(calendarService.getOneData(cal_num) == null) {
+			model.addAttribute("message", "일정이 삭제되었습니다.");
+		}else {
+			model.addAttribute("message", "일정 삭제에 실패했습니다.");
+		}
+		
+		model.addAttribute("url", "/main/main.do");
+		
+		return "common/resultView";
+	}
+	
+	@GetMapping("/calendar/edit.do")
+	public String editPage(@RequestParam int cal_num, Model model){
+		
+		CalendarVO calendar = calendarService.getOneData(cal_num);
+		
+		model.addAttribute("calendar", calendar);
+		
+		return "calEdit";
+	}
 }

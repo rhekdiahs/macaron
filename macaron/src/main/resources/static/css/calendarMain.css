@@ -31,70 +31,6 @@ div#calendar {
 	overflow : auto;
 }
 
-
-#calendar_list_ul{
-	margin : 0;
-	padding : 0;
-}
-#calendar_list_ul:last-child{
-	margin-bottom : 40px;
-}
-.calendar-item-wrap{
-	width : 100vw;
-	margin : 0px auto;
-	position : relative;
-	background : white;
-}
-.calendar-item-image{
-	width : 100vw;
-	vertical-align : middle;	
-}
-.calendar-item-image img{
-	width: inherit;
-	height: 60vw;
-}
-.calendar-item-text{
-	position : absolute;
-	top : 50%;
-	left : 50%;
-	width : 90vw;
-	transform : translate(-50%, -50%);
-	text-align : center;
-}
-.calendar-item-text p {
-	margin : 5px;
-	white-space: nowrap;
-}
-.font-White{
-	color : white;
-}
-.gallery-item-text-date{
-	font-size : 15pt;
-}
-.calendar-item-text-title{
-	font-size : 20pt;
-	font-weight : bold;
-	overflow : hidden;
-	text-overflow: ellipsis;
-}
-.calendar-item-text-loc{
-	font-size : 11pt;
-	overflow : hidden;
-	text-overflow: ellipsis;
-}
-
-#empty-div{
-	display : flex;
-	justify-content: center;
-  	align-items: center;
-	text-align : center;
-	width : 100vw;
-	height : calc(100vh - 40px);
-}
-#empty-div img{
-	width : 30vw;
-	height : 30vw;
-}
 div#detail_container{
 	margin: 10px;
     padding: 10px 10px 20px 10px;
@@ -106,7 +42,7 @@ div#detail_container{
 div#button_box{
 	text-align: end;
 }
-img#detail_close{
+div#button_box img{
 	width:30px;
 	height:30px;
 }

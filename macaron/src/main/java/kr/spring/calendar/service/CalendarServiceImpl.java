@@ -31,5 +31,14 @@ public class CalendarServiceImpl implements CalendarService {
 		return calendarMapper.getOneData(cal_num);
 	}
 
-	
+	@Override
+	public void deleteSchedule(int cal_num) {
+		calendarMapper.deleteCal(cal_num);
+	}
+
+	@Override
+	public void editSchedule(CalendarVO calendar) {
+		calendarMapper.updateCal(calendar);
+	}
+
 }
