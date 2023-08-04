@@ -167,7 +167,7 @@ public class CoupleController {
 		return "waitingView";
 	}
 	
-	public String code() {
+	private String code() {
 		Random random = new Random();
 		
 		StringBuffer code = new StringBuffer();
@@ -191,7 +191,7 @@ public class CoupleController {
 		return code.toString();	
 	}
 	
-	public boolean checkCode(String code) {
+	private boolean checkCode(String code) {
 		boolean result = false;
 		
 		//해당 인증코드가 cookie컬럼에 저장된 계정이 있는지 확인

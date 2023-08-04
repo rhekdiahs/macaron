@@ -120,7 +120,7 @@ public class CalendarController {
 		calendarService.insertCal(calendarVO);
 		
 		model.addAttribute("message", "일정이 등록되었습니다.");
-        model.addAttribute("url", "/main/main.do");
+        model.addAttribute("url", "/calendar/main.do");
         
 		return "common/resultView";
 	}
@@ -143,11 +143,12 @@ public class CalendarController {
 		
 		if(calendarService.getOneData(cal_num) == null) {
 			model.addAttribute("message", "일정이 삭제되었습니다.");
+			model.addAttribute("url", "/calendar/main.do");
 		}else {
 			model.addAttribute("message", "일정 삭제에 실패했습니다.");
+			model.addAttribute("url", "/main/main.do");
 		}
 		
-		model.addAttribute("url", "/main/main.do");
 		
 		return "common/resultView";
 	}
@@ -176,12 +177,11 @@ public class CalendarController {
 		calendarService.editSchedule(calendarVO);
 		
 		model.addAttribute("message", "일정이 수정되었습니다.");
-		model.addAttribute("url", "/main/main.do");
+		model.addAttribute("url", "/calendar/main.do");
 		
 		return "common/resultView";
 	}
-	
-	public String formatDateEnd(CalendarVO calendar) {
+	private String formatDateEnd(CalendarVO calendar) {
 		
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;

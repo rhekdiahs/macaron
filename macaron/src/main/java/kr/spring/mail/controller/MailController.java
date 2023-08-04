@@ -40,7 +40,7 @@ public class MailController {
 		return key;
 	}
 	
-	public String createKey() {
+	private String createKey() {
 		StringBuffer key = new StringBuffer();
 		Random rand = new Random();
 		
