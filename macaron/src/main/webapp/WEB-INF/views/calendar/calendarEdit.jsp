@@ -16,14 +16,14 @@
 					</a>
 				</li>
 				<li style = "margin: 0 auto;">
-					<span>일정 등록하기</span>
+					<span>일정 수정하기</span>
 				</li>
 			</ul>
 		</div>
 		<div id = "cont-wrap">
 			<div>
-				<form:form action = "write.do" method = "post" modelAttribute = "calendarVO" id = "calendar_register">
-					<input type="hidden" value="${calendar.cal_num}">
+				<form:form action = "edit.do" method = "post" modelAttribute = "calendarVO" id = "calendar_register">
+					<form:input type="hidden" path="cal_num" value="${calendar.cal_num}"/>
 					<ul id = "select-section">
 						<li class="hide">
 							<input type="checkbox" id="cal_category" name="cal_category" value="pink" onclick="checkOne(this)" checked /> 데이트
@@ -55,11 +55,11 @@
 							<span class = "option-title">메모</span>
 						</li>
 						<li class = "hide">
-							<form:textarea class = "input-textbox memo" path = "cal_memo" value="${calendar.cal_memo}" cols="40" rows="6"/>
+							<textarea class = "input-textbox memo" id = "cal_memo" name="cal_memo" cols="40" rows="6">${calendar.cal_memo}</textarea>
 						</li>
 					</ul>
 					<ul id = "placesList"></ul>
-					<div id="submit_btn">
+					<div id="submit_btn" style="position:relative; top:-50px;">
 						<form:button id="calendar_submit" disabled='disabled'>일정 추가</form:button>
 					</div>
 				</form:form>
@@ -90,11 +90,21 @@
 	 	           minDate: "-5Y", 	//최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 	 	           maxDate: "+5y"	//최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
 	 	       });                    
+	 		
+	 	    //초기값을 오늘 날짜로 설정
+	 	    $('.start').datepicker('setDate', new Date('${calendar.date_start}')); 
+	 	  	$('.end').datepicker('setDate', new Date(new Date('${calendar.date_end}').getTime() - 1000*60*60*24)); 
 	 	       
-	 	       //초기값을 오늘 날짜로 설정
-	 	       $('.start').datepicker('setDate', ${calendar.date_start}); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-	 	       $('.end').datepicker('setDate', ${calendar.date_end}); 
+	 	    //db 저장된 category만 체크
+	 	   	document.querySelectorAll('#cal_category').forEach(function(chk){
+				if(chk.value == '${calendar.cal_category}'){
+		 	   		chk.checked = true;
+				}else{
+					chk.checked = false;
+				}
 	 		});
+	 	    
+	 	});
 	 	
 	 	//checkbox 중복 선택 방지
 	 	function checkOne(input){
@@ -107,7 +117,7 @@
 	 		input.checked = true;
 	 	}
 	 	
-	 	//form submit JS
+	 	
 	 	
 	 	
 	</script>

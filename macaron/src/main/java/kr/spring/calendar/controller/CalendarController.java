@@ -93,6 +93,7 @@ public class CalendarController {
 		
 		String mem_cookie = member.getMem_cookie();
 		
+		/*
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		
@@ -108,6 +109,9 @@ public class CalendarController {
 		//cal.setTimeInMillis(cal.getTimeInMillis() + 1000*60*60*24);
 		
 		String date_end = format.format(cal.getTime());
+		*/
+		
+		String date_end = formatDateEnd(calendarVO);
 		
 		calendarVO.setMem_cookie(mem_cookie);
 		calendarVO.setDate_start(calendarVO.getDate_start().replaceAll(" - ", "-"));
@@ -156,5 +160,45 @@ public class CalendarController {
 		model.addAttribute("calendar", calendar);
 		
 		return "calEdit";
+	}
+	
+	@PostMapping("/calendar/edit.do")
+	public String edit(@ModelAttribute CalendarVO calendarVO, HttpSession session, Model model) {
+		
+		if(session.getAttribute("user") == null) {
+			model.addAttribute("message", "로그인이 필요합니다.");
+			model.addAttribute("url", "/member/login.do");
+		}
+		
+		calendarVO.setDate_start(calendarVO.getDate_start().replaceAll(" - ", "-"));
+		calendarVO.setDate_end(formatDateEnd(calendarVO));
+		
+		calendarService.editSchedule(calendarVO);
+		
+		model.addAttribute("message", "일정이 수정되었습니다.");
+		model.addAttribute("url", "/main/main.do");
+		
+		return "common/resultView";
+	}
+	
+	public String formatDateEnd(CalendarVO calendar) {
+		
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		
+		try {
+			date = (Date) format.parse(calendar.getDate_end().replaceAll(" - ", "-"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DATE, 1);
+		//cal.setTimeInMillis(cal.getTimeInMillis() + 1000*60*60*24);
+		
+		String date_end = format.format(cal.getTime());
+		
+		return date_end;
 	}
 }
