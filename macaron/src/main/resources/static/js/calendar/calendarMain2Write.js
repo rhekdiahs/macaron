@@ -9,13 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	var writeButton = document.getElementById('menu_icon');
 	var backButton = document.getElementById('back_btn');
 	var curURL = document.location.href.split('calendar')[0];
-	var placeList = document.getElementById("placesList");
 	
 	let curTop;
 	let urlCheck;
-	let header_height = main_header.getBoundingClientRect().height;
 	
 	writeButton.addEventListener('click', function() {
+		$('#detail_container').addClass('detail-hide');
+		
 		curTop = window.pageYOffset;
 		console.log(curTop);
 

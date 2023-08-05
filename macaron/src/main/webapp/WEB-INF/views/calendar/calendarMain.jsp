@@ -75,7 +75,7 @@
 	</div>
 	<!-- 글쓰기 폼 끝 -->
 </div>
-	<div id="detail_container" class="detail-hide">
+	<div id="detail_container" class="detail-hide" style="position:fixed;">
 		<div id="button_box">
 			<a id="detail_del" >
 				<img src = "../image_bundle/trash-bin.png">
@@ -99,17 +99,20 @@
 			//console.log(document.body.offsetHeight);
 			//console.log(document.body.scrollHeight);
 			//console.log(document.body.clientHeight);
-			//screen.availHeight = 현재 스크린 높이
+			
 			let footerHeight = document.getElementById('bottom_menu').offsetHeight;
 			let headerHeight = document.getElementById('top_menu').offsetHeight;
-			let calHeight = document.getElementById('calendar').offsetHeight;
-			let emptyHeight = screen.availHeight - headerHeight - footerHeight - calHeight;
-			let detailHeight = document.getElementById('detail_container').offsetHeight;
+			let screenHeight = screen.availHeight
+			//let detailHeight = document.getElementById('detail_container').offsetHeight;
+			let scrollHeight = scrollY;
 			
-			console.log('공백의 높이 = ' + emptyHeight);
-			console.log('footer 바로 위 = ' + (screen.availHeight - footerHeight));
-			console.log('상세정보 = ' + detailHeight);
-						
+			window.addEventListener('scroll', function(){
+				scrollHeight = scrollY;
+			});
+			
+			console.log('스크린 높이 = ' + screenHeight);
+			console.log('screen.height 높이 = ' + screen.height);
+			
 			$(function() {
 				var request = $.ajax({
 					url : '/calendar/cal.do',
@@ -143,10 +146,28 @@
 							left : 'prev'
 						},
 
+						/*
+						customButtons: {
+							next:{
+								click:function(){
+									$('#detail_container').addClass('detail-hide');
+								}
+							},
+							
+							prev:{
+								click:function(){
+									$('#detail_container').addClass('detail-hide');
+								}
+							}
+						},
+						*/
+						
 						titleFormat : function(date) {
 							// YYYY년 MM월
 							return date['end'].year + '년 '+ (date['date'].month + 1)+ '월';
 						},
+						
+						contentHeight: screen.availHeight - footerHeight - headerHeight,
 
 						//일정이 추가될 때마다 추가될 데이터
 						events : data,
@@ -186,7 +207,6 @@
 									$('#detail_title').html(param.cal_title);
 									$('#detail_memo').html(param.cal_memo);
 									if(diffDay < 1){
-										console.log('같음');
 										$('#detail_date').html(date_start);
 									}else{
 										date_end = new Date(date_end).toISOString().split("T")[0].replace(/-/gi,'.');
@@ -195,8 +215,14 @@
 									
 									$('#detail_container').removeClass('detail-hide');
 									
+									let detailHeight = document.getElementById('detail_container').offsetHeight;
+									
+									$('#detail_container').offset({top:screenHeight - footerHeight - detailHeight - 10 + scrollHeight});
+									
+									//$(window).css('height',screenHeight);
+									
 									$('#detail_del').click(function(){
-										var del_confirm = confirm('일정을 삭제할까요?');
+										let del_confirm = confirm('일정을 삭제할까요?');
 										
  										if(del_confirm){
  											location.href = '/calendar/delete.do?cal_num='+cal_num;
@@ -218,7 +244,7 @@
 									});
 									
 									$('#detail_setting').click(function(){
-										var edit_confirm = confirm('일정을 수정할까요?');
+										let edit_confirm = confirm('일정을 수정할까요?');
 										
 										if(edit_confirm){
 											location.href = '/calendar/edit.do?cal_num='+cal_num;
@@ -247,6 +273,10 @@
 		});//ajax function
 
 	});//ready function
+	
+	$('#detail_close').click(function(){
+		$('#detail_container').addClass('detail-hide');
+	})
 	
 	//datepicker JS
  	$(function(){
