@@ -5,15 +5,11 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/confirmId.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/makeEmail.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/calendar/makePhone.js"></script>
 <script>
-$(document).on("keyup", ".mem_phone", function() {
+$(document).on("keyup", ".mem_phone", function(e) {
 	$(this).val($(this).val().replace(/[^0-9]/g, "")); 
 });
-function numberphone(e){
-	if(e.value.length>13){
-		e.value=e.value.slice(0,13);
-	}
-}
 </script>
 <div class="register-main">
 	<form:form action="registerUser.do" id="register_form" modelAttribute="memberVO">
@@ -88,12 +84,13 @@ function numberphone(e){
 			<li>
 				<label for="phone">전화번호(선택)</label>
 				<br>
-				<select>
-					<option value="home">02</option>
-					<option value="cell">010</option>
+				<select id="phone_head">
+					<option value="02">02</option>
+					<option value="010">010</option>
 				</select>
-				<input type="text" class="mem_phone" maxlength="4" placeholder="중간번호 입력">
-				<form:input path="mem_phone" oninput="numberphone(this)" class="mem_phone" maxlength="4" placeholder="마지막번호 입력"/>
+				<input type="text" class="mem_phone middle" maxlength="4" placeholder="중간번호 입력"/>
+				<input class="mem_phone tail" maxlength="4" placeholder="마지막번호 입력"/>
+				<input type="hidden" id="mem_phone" name="mem_phone" value="">
 				<form:errors path="mem_phone" cssClass="error-color"/>
 			</li>
 		</ul>
@@ -104,4 +101,3 @@ function numberphone(e){
 	</form:form>
 </div>
 <!-- 중앙 컨텐츠 끝 -->
-
