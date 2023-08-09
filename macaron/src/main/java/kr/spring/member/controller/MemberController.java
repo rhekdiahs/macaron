@@ -223,10 +223,10 @@ public class MemberController {
 	   @PostMapping("/member/findId.do")
 	   public String FindIdSubmit(@Valid MemberVO member, BindingResult result, HttpServletRequest request, Model model) {
 
-	      String mem_name = request.getParameter("mem_name");
+	      String mem_nick = request.getParameter("mem_nick");
 	      String mem_email = request.getParameter("mem_email");
 	      
-	      member.setMem_all_id(memberService.find_id(mem_name, mem_email));
+	      member.setMem_all_id(memberService.find_id(mem_nick, mem_email));
 	      String[] all_id = member.getMem_all_id();
 	      
 	      
@@ -235,7 +235,7 @@ public class MemberController {
 	         model.addAttribute("url", "/member/findId.do");
 	         return "common/resultView";
 	      }else {
-	         model.addAttribute("accessMsg","<strong>"+ mem_name+"</strong>님의 아이디는<br><br><strong>" + Arrays.toString(all_id) + "</strong><br><br>입니다");
+	         model.addAttribute("accessMsg","<strong>"+ mem_nick+"</strong>님의 아이디는<br><br><strong>" + Arrays.toString(all_id) + "</strong><br><br>입니다");
 	         return "common/notice";
 	      }
 	   }

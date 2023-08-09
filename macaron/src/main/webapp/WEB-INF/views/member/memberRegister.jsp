@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!-- 중앙 컨텐츠 시작 -->
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/confirmId.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/makeEmail.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/calendar/makePhone.js"></script>
@@ -21,15 +21,15 @@ $(document).on("keyup", ".mem_phone", function(e) {
 			<li>
 				<label for="mem_id">아이디</label>
 				<br>
-				<form:input path="mem_id" autocomplete="off"/>
-				<input type="button" id="confirmId" value="아이디 중복체크">
+				<form:input path="mem_id" autocomplete="off" size="30"/>
+				<input type="button" id="confirmId" value="중복체크">
 				<div id="message_id"></div> <!-- js를 위한 태그 -->
 				<form:errors path="mem_id" cssClass="error-color"/> <!-- 에러문구 -->
 			</li>
 			<li>
 				<label for="mem_pw">비밀번호</label>
 				<br>
-				<form:password path="mem_pw"/>
+				<form:password path="mem_pw" size="41"/>
 				<div id="message_pw">
 				<form:errors path="mem_pw" cssClass="error-color"/></div>
 			</li>
@@ -37,26 +37,21 @@ $(document).on("keyup", ".mem_phone", function(e) {
 			<li>
 				<label for="pw_confirm">비밀번호 확인</label>
 				<br>
-				<form:password path="pw_confirm"/>
+				<form:password path="pw_confirm" size="41"/>
 				<span id="confirmMsg"></span>
 			</li>
-			</ul>
-			</div>
-			
-			<div class="register-content">
-			<ul>
 			<li>
 				<label for="mem_nick">이름</label>
 				<br>
-				<form:input path="mem_nick"/>
+				<form:input path="mem_nick" size="41"/>
 				<form:errors path="mem_nick" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="user_email">본인확인 이메일</label>
 				<br>
-				<input type="text" id="user_email" required>
+				<input type="text" id="user_email" required size="10">
 				<span id="middle">@</span>
-				<input type="text" id="email_direct" name="email_direct" placeholder="이메일 입력"/>
+				<input type="text" id="email_direct" name="email_direct" size="13" placeholder="이메일 입력"/>
 				<select id="email_address" name="email_address" title="이메일 선택" class="email_address">
 					<option value="naver.com">naver.com</option>
 					<option value="gmail.com">gmail.com</option>
@@ -73,7 +68,7 @@ $(document).on("keyup", ".mem_phone", function(e) {
 			<%--=======================이메일 인증코드 구현 시작========================  --%>
 			<li>
 				<div class="mail-check-box">
-					<input class="form-control mail-check-input" placeholder="인증번호 6자리 입력" disabled="disabled" maxlength="6">
+					<input class="form-control mail-check-input" placeholder="인증번호 6자리 입력" disabled="disabled" maxlength="6" size="41">
 				</div>
 				<div id="mail-check-warn"></div>
 			</li>
@@ -87,17 +82,26 @@ $(document).on("keyup", ".mem_phone", function(e) {
 				<select id="phone_head">
 					<option value="02">02</option>
 					<option value="010">010</option>
-				</select>
-				<input type="text" class="mem_phone middle" maxlength="4" placeholder="중간번호 입력"/>
-				<input class="mem_phone tail" maxlength="4" placeholder="마지막번호 입력"/>
+				</select> - 
+				<input type="text" class="mem_phone middle" maxlength="4" size="10" placeholder="중간번호 입력" /> - 
+				<input class="mem_phone tail" maxlength="4" size="11" placeholder="마지막번호 입력"/>
 				<input type="hidden" id="mem_phone" name="mem_phone" value="">
 				<form:errors path="mem_phone" cssClass="error-color"/>
 			</li>
 		</ul>
-		</div>
+			</div>
 		<div class="align-center">
 			<form:button id="register-submit-btn">가입하기</form:button>
 		</div>
 	</form:form>
 </div>
 <!-- 중앙 컨텐츠 끝 -->
+<script type="text/javascript">
+$(function(){
+	let footerHeight = document.getElementById('bottom_menu').offsetHeight;
+	let headerHeight = document.getElementById('top_menu').offsetHeight;
+	let screenHeight = screen.availHeight;
+	
+	$('form#register_form').height(screenHeight - footerHeight - headerHeight);
+});
+</script>

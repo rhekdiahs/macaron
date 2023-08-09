@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+ul {
+	list-style : none;
+	padding:0;
+}
+ul label{
+	margin:1px;
+}
+form#register_form{
+	box-sizing:border-box;
+	width:100%;
+	height:100%;
+	text-align:left;
+	padding-left:20px;
+}
+button#register-submit-btn{
+	border:none;
+	font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+	width:100%;
+	position:fixed;
+	left:0px;
+	bottom: 42px;
+	background-color: #ccc;
+    cursor : pointer;
+    align-items: center;
+    justify-content: center;
+    padding:7px 0px;
+}
+input#confirmId {
+    width: 70px;
+}
+div.register-main ul{
+	justify-content:space-between;
+}
+ul li{
+	margin:0px 0px 15px 0px;
+}
+input.mem_phone{
+	margin:5px 5px 0 5px;
+}
+#phone_head{
+	margin: 0 5px 0 0;
+}
+#confirmId, #mail-Send-Btn{
+	box-sizing:border-box;
+	border:none;
+	color: #fff;
+	align-items: center;
+	background-color: #bae8fe;
+	border-radius:3px;
+	padding:2px;
+}
+input, select{
+	margin-top:5px;
+}
